@@ -1,0 +1,51 @@
+/*
+	主样式文件 
+*/
+#application {
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+}
+
+.form {
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  height: auto;
+  min-height: 100px;
+  color: black;
+  background-color: #ebebeb;
+  font-family: 'Microsoft Yahei';
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased; /* 非标准抗锯齿效果 */
+  -moz-osx-font-smoothing: grayscale; /* 非标准抗锯齿效果 */	
+}
+
+.flex-row {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.flex-column {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.image {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+
+	overflow: hidden;
+}
+
+.text-normal {
+	color: black;
+}
