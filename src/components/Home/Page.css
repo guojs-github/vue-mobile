@@ -1,0 +1,12 @@
+/*
+	Home page通用样式 
+*/
+.home-page {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+
+  width: 100%;
+  background-color: #ebebeb;
+}
+

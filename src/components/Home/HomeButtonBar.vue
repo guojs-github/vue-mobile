@@ -33,6 +33,7 @@ export default {
 
       if (id !== this.selectedTab) {
         this.selectedTab = id
+        this.$emit('tabChange', {id: id})
       }
     }
   }

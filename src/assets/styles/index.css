@@ -46,6 +46,26 @@
 	overflow: hidden;
 }
 
+.title {
+	position: absolute;
+	top: 0;
+
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 18px;
+	text-align: center;
+}
+
+.title-red {
+	color: white;
+	background-color: #F43737;
+}
+
+.background-red {
+	background-color: #F43737;
+}
+
 .text-normal {
 	color: black;
 }
