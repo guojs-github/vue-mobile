@@ -1,11 +1,11 @@
 <template>
   <div class='flex-row button-bar'>
-    <div class='flex-column tab' v-for='tab in tabs' v-bind:key='tab.id' :class='{selected:tab.id==selectedTab}' @click='onTabChange(tab.id)'>
+    <div class='flex-column tab ef-click' v-for='tab in tabs' v-bind:key='tab.id' @click='onTabChange(tab.id)'>
       <div class='image'>
         <img v-bind:src='tab.imageSelected' v-if='selectedTab == tab.id' >
         <img v-bind:src='tab.image' v-else >
       </div>
-      <div class='text text-normal'>
+      <div class='text text-light' :class='{"text-red":selectedTab == tab.id}'>
         {{ tab.name }}
       </div>
     </div>

@@ -2,11 +2,18 @@
 	Home page通用样式 
 */
 .home-page {
-  position: absolute;
-  top: 50px;
-  bottom: 50px;
+	position: absolute;
+   	top: 50px;
+  	bottom: 50px;
 
-  width: 100%;
-  background-color: #ebebeb;
+	width: 100%;
+  	background-color: #ebebeb;
 }
 
+.section {
+	padding: 0 15px;
+	margin-top: 10px;
+
+	width: calc(100% - 30px);
+	background-color: white;
+}

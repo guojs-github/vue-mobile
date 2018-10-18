@@ -21,10 +21,6 @@ div.button-bar div.tab {
   justify-content: flex-start;
 }
 
-div.button-bar div.tab:active {
-  background-color: #c8c8c8;
-}
-
 div.button-bar div.tab div.image {
   margin-top: 8px;
   width: 100%;
