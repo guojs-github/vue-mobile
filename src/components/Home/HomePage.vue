@@ -7,8 +7,8 @@
     <div class='section projectDailyReport'>
       <div class='row caption'>
         <div class='text-dark text'>项目日报</div>
-        <div class='flex-row more ef-click'>
-          <div class='text-light more-text'>
+        <div class='flex-row more ef-click' @click='onClickProjectDailyReportMore'>
+          <div class='text-light more-text' >
             查看更多
           </div>
           <div class='image'>
@@ -144,6 +144,13 @@ export default {
     this.init()
   },
   methods: {
+    onClickProjectDailyReportMore: function (e) {
+      console.log('On click more project daily report')
+
+      this.$router.push('/ProjectDailyReport/list')
+    },
+
+    /******************************************************/
     init: function () {
       console.log('initialize HomePage.')
 

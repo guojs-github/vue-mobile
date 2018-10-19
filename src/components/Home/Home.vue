@@ -1,14 +1,13 @@
 <template>
   <div class="form">
-    <div class="title title-red">
-      {{ title }}
-    </div>
+    <FormTitle :title='title'/>
     <component :is='tabView'/>
     <HomeButtonBar @tabChange='onTabChange'/>
   </div>
 </template>
 
 <script>
+import FormTitle from '@/components/Common/FormTitle'
 import HomeButtonBar from '@/components/Home/HomeButtonBar'
 import HomePage from '@/components/Home/HomePage'
 import Trace from '@/components/Home/Trace'
@@ -23,6 +22,7 @@ export default {
     }
   },
   components: {
+    FormTitle,
     HomeButtonBar,
     HomePage,
     Trace,

@@ -44,7 +44,7 @@ const request = {
         content: '兹定于2019元旦期间更新应用系统，当前业务服务将停止，请有关方面配合，做好相关准备工作。'
       })
     })
-    return p  	
+    return p
   }
 }
 
