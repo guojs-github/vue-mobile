@@ -5,9 +5,12 @@
 	position: absolute;
    	top: 50px;
   	bottom: 50px;
+    padding-bottom: 20px;
 
 	width: 100%;
   	background-color: #ebebeb;
+  	overflow-x: hidden;
+  	overflow-y: auto;
 }
 
 .section {

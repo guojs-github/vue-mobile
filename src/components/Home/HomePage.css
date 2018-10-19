@@ -76,3 +76,18 @@
 	-webkit-box-orient: vertical;
 }
 
+.home-page .my-orders .orders-title {
+	margin-top: 15px;
+
+	width: 100%;
+	text-align: left;
+
+	justify-content: space-between;
+}
+
+.home-page .my-orders .orders-title .right .image.favour {
+	margin-left: 5px;
+	
+	width: 15px;
+	height: 15px;	
+}
