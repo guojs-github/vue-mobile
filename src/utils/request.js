@@ -15,6 +15,36 @@ const request = {
       })
     })
     return p
+  },
+
+  myOrdersLatest: () => {
+    console.log('Get latest order.')
+
+    let p = new Promise(function (resolve, reject) {
+      resolve({
+        code: 'LGS201808190000023',
+        status: '已完结',
+        favour: true,
+        startPoint: '北京',
+        terminal: '武汉',
+        time: '2018-08-15 15:55',
+        arrival: '成都 到港'
+      })
+    })
+    return p
+  },
+
+  warningLatest: () => {
+    console.log('Get latest warning.')
+
+    let p = new Promise(function (resolve, reject) {
+      resolve({
+        title: '系统上线提示',
+        time: '2019-01-01 00:00',
+        content: '兹定于2019元旦期间更新应用系统，当前业务服务将停止，请有关方面配合，做好相关准备工作。'
+      })
+    })
+    return p  	
   }
 }
 
