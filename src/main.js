@@ -4,10 +4,15 @@
 import Vue from 'vue'
 import App from './App' // 组件App
 import router from './router' // 路由器？
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
 
 Vue.config.productionTip = false
 // 开启debug模式
 Vue.config.debug = true
+
+// Mint UI
+Vue.use(MintUI)
 
 /* eslint-disable no-new */
 new Vue({
