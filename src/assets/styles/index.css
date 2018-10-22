@@ -1,26 +1,13 @@
 /*
 	主样式文件 
 */
+@import './form.css';
+
 #application {
   margin: 0;
   padding: 0;
 
   width: 100%;
-}
-
-.form {
-  margin: 0;
-  padding: 0;
-
-  width: 100%;
-  height: auto;
-  min-height: 100px;
-  color: black;
-  background-color: #ebebeb;
-  font-family: 'Microsoft Yahei';
-  font-size: 13px;
-  -webkit-font-smoothing: antialiased; /* 非标准抗锯齿效果 */
-  -moz-osx-font-smoothing: grayscale; /* 非标准抗锯齿效果 */	
 }
 
 .flex-row {

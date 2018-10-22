@@ -1,14 +1,15 @@
 <template>
   <div class="form">
     <FormTitle title='项目日报' :showGoback='true' @goback='onGoback'/>
-    <FormBodyList @loadData='onLoadData'>
-      <div style='wdith: 100px; height: 500px; background-color: red; margin-top: 50px;'>
-      </div>
-    </FormBodyList>
+    <div class='form-body' >
+      <FormBodyList :list="data.list" :more="data.more" @loadData='onLoadData' @loadMoreData='onLoadMoreData'>
+      </FormBodyList>
+    </div>
   </div>
 </template>
 
 <script>
+import { request } from '../../utils/request'
 import FormTitle from '@/components/Common/FormTitle'
 import FormBodyList from '@/components/Common/FormBodyList'
 import { Loadmore } from 'mint-ui'
@@ -16,6 +17,12 @@ export default {
   name: 'ProjectDailyReportList',
   data () {
     return {
+      data: {
+        pageIndex: -1,
+        pageSize: 50,
+        more: true,
+        list: []
+      }
     }
   },
   components: {
@@ -25,7 +32,10 @@ export default {
   },
   created: function () {
     console.log('Project daily report list created.')
+
+    this.init()
   },
+
   methods: {
     onGoback: function () {
       console.log('On click back')
@@ -36,10 +46,56 @@ export default {
     },
 
     onLoadData: function () {
-      console.log('On load data')
-    }
+      console.log('On load project daily report data')
+
+      this.query(true)
+    },
+
+    onLoadMoreData: function () {
+      console.log('On load more project daily report data')
+
+      this.query()
+    },
 
     /********************************/
+    init: function () {
+      console.log('Project daily report list initialize.')
+    },
+
+    query: function (reset) {
+      console.log('Project daily report list query.')
+
+      let param = {
+        pageIndex: reset ? 0 : this.data.pageIndex + 1,
+        pageSize: this.data.pageSize
+      }
+
+      let _this = this
+      request.projectDailyReportList(param).then(
+        function (data) {
+          console.log('Call project daily report list success.')
+          console.log('Data:' + JSON.stringify(data))
+
+          if (data.return === 0) {
+            if (reset) {
+              _this.data.list.splice(0, _this.data.list.length)
+              _this.data.pageIndex = -1
+            }
+
+            for (let i = 0; i < data.list.length; i++) {
+              _this.data.list.splice(_this.data.list.length, 1, data.list[i])
+            }
+
+            _this.data.more = data.more
+            _this.data.pageIndex++
+          }
+        },
+        function (message) {
+          console.log('Call project daily report list fail.')
+          console.log('Message:' + message)
+        }
+      )
+    } // query
   }
 }
 </script>

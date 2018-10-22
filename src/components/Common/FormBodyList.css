@@ -1,0 +1,9 @@
+/*
+	查询列表低端的提示现实
+*/
+.list-bottom-hint {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
