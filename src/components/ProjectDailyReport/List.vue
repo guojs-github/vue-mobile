@@ -1,15 +1,16 @@
 <template>
   <div class="form">
     <FormTitle title='项目日报' :showGoback='true' @goback='onGoback'/>
-    <mt-loadmore :top-method="onLoadTop" :bottom-method="onLoadBottom" ref="loadmore">
-      <div style='wdith: 100px; height: 100px; background-color: red; margin-top: 100px;'>
+    <FormBodyList @loadData='onLoadData'>
+      <div style='wdith: 100px; height: 500px; background-color: red; margin-top: 50px;'>
       </div>
-    </mt-loadmore>
+    </FormBodyList>
   </div>
 </template>
 
 <script>
 import FormTitle from '@/components/Common/FormTitle'
+import FormBodyList from '@/components/Common/FormBodyList'
 import { Loadmore } from 'mint-ui'
 export default {
   name: 'ProjectDailyReportList',
@@ -19,7 +20,11 @@ export default {
   },
   components: {
     FormTitle,
+    FormBodyList,
     Loadmore
+  },
+  created: function () {
+    console.log('Project daily report list created.')
   },
   methods: {
     onGoback: function () {
@@ -30,14 +35,8 @@ export default {
         : this.$router.push('/')
     },
 
-    onLoadTop: function () {
-      console.log('On load top')
-
-      this.$refs.loadmore.onTopLoaded()
-    },
-
-    onLoadBottom: function () {
-      console.log('On load bottom')
+    onLoadData: function () {
+      console.log('On load data')
     }
 
     /********************************/
