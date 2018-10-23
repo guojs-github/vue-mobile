@@ -3,6 +3,21 @@
     <FormTitle title='项目日报' :showGoback='true' @goback='onGoback'/>
     <div class='form-body' >
       <FormBodyList :list="data.list" :more="data.more" @loadData='onLoadData' @loadMoreData='onLoadMoreData'>
+        <template slot-scope="{ item }">
+          <div class='section projectDailyReport'>
+            <div class='flex-column ef-click content '>
+              <div class='text-dark report-title'>
+                {{ item.title }}
+              </div>
+              <div class='text-light report-time'>
+                {{ item.time }}
+              </div>
+              <div class='text-normal report-description'>
+                {{ item.description }}
+              </div>
+            </div>
+          </div><!-- 项目日报 -->
+        </template>
       </FormBodyList>
     </div>
   </div>
@@ -19,7 +34,7 @@ export default {
     return {
       data: {
         pageIndex: -1,
-        pageSize: 50,
+        pageSize: 30,
         more: true,
         list: []
       }
@@ -101,5 +116,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped src='./List.css'/>
 <style scoped>
 </style>

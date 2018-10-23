@@ -1,12 +1,12 @@
 <template>
   <mt-loadmore :top-method="onLoadTop" :top-distance='50' ref="loadmore">
-    <ul v-infinite-scroll="onLoadMore" infinite-scroll-disabled="false" infinite-scroll-distance="10">
-      <li v-for="item in list" :key="item.id">
+    <div v-infinite-scroll="onLoadMore" infinite-scroll-disabled="false" infinite-scroll-distance="10">
+      <div v-for="item in list" :key="item.id">
         <slot :item="item">
           {{ item.id }}
         </slot>
-      </li>
-    </ul>
+      </div>
+    </div>
     <div class='text-light list-bottom-hint'>—— {{ bottomHint }} ——</div>
   </mt-loadmore>
 </template>
