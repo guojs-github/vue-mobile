@@ -1,11 +1,16 @@
 <template>
   <div class="form">
     <FormTitle title='项目日报' :showGoback='true' @goback='onGoback'/>
-    <div class='form-body' >
-      <FormBodyList :list="data.list" :more="data.more" @loadData='onLoadData' @loadMoreData='onLoadMoreData'>
+    <div class='form-body' @scroll="onScroll">
+      <FormBodyList
+        :list="data.list"
+        :more="data.more"
+        @loadData='onLoadData'
+        @loadMoreData='onLoadMoreData'
+      >
         <template slot-scope="{ item }">
           <div class='section projectDailyReport'>
-            <div class='flex-column ef-click content '>
+            <div :id='item.id' class='flex-column ef-click content ' @click='onClickDetail'>
               <div class='text-dark report-title'>
                 {{ item.title }}
               </div>
@@ -27,11 +32,11 @@
 import { request } from '../../utils/request'
 import FormTitle from '@/components/Common/FormTitle'
 import FormBodyList from '@/components/Common/FormBodyList'
-import { Loadmore } from 'mint-ui'
 export default {
   name: 'ProjectDailyReportList',
   data () {
     return {
+      scrollTop: 0,
       data: {
         pageIndex: -1,
         pageSize: 30,
@@ -42,11 +47,31 @@ export default {
   },
   components: {
     FormTitle,
-    FormBodyList,
-    Loadmore
+    FormBodyList
   },
+
   created: function () {
     console.log('Project daily report list created.')
+  },
+
+  beforeRouteEnter: function (to, from, next) {
+    console.log('Project daily report list before router enter.')
+    console.log('to:' + to.name)
+    console.log('from:' + from.name)
+    console.log('next:' + next.name)
+
+    // 从明细来的为回退，其它都是刷新
+    if (from.name === 'ProjectDailyReportDetail') {
+      to.meta.isBack = true
+    } else {
+      to.meta.isBack = false
+    }
+
+    next() // 继续执行路由, 否则路由中断，页面不显示
+  },
+
+  activated: function () {
+    console.log('Project daily report list activated.')
 
     this.init()
   },
@@ -72,13 +97,42 @@ export default {
       this.query()
     },
 
+    onClickDetail: function (e) {
+      console.log('On click report detail')
+      console.log('id:' + e.currentTarget.id)
+
+      this.$router.push({
+        path: '/ProjectDailyReport/detail',
+        params: {
+          id: e.currentTarget.id
+        }
+      })
+    },
+
+    onScroll: function (e) {
+      console.log('On form-body scroll')
+      console.log('Scroll top:' + e.currentTarget.scrollTop)
+
+      this.scrollTop = e.currentTarget.scrollTop
+    },
+
     /********************************/
     init: function () {
       console.log('Project daily report list initialize.')
+
+      if (this.$route.meta.isBack) {
+        this.restore()
+      } else {
+        this.query(true)
+      }
     },
 
     query: function (reset) {
       console.log('Project daily report list query.')
+
+      if ((reset !== true) && (this.data.pageIndex < 0)) { // 如果reset标志没有，而且pageIndex不是已经有加载过页面，则不查询
+        return
+      }
 
       let param = {
         pageIndex: reset ? 0 : this.data.pageIndex + 1,
@@ -110,7 +164,17 @@ export default {
           console.log('Message:' + message)
         }
       )
-    } // query
+    }, // query
+
+    restore: function () {
+      console.log('Restore display')
+
+      // scroll top
+      let el = document.getElementsByClassName('form-body')
+      if (el.length === 1) {
+        el[0].scrollTo(0, this.scrollTop)
+      }
+    } // restore
   }
 }
 </script>

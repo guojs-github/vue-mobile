@@ -1,13 +1,18 @@
 <template>
   <mt-loadmore :top-method="onLoadTop" :top-distance='50' ref="loadmore">
-    <div v-infinite-scroll="onLoadMore" infinite-scroll-disabled="false" infinite-scroll-distance="10">
+    <div
+      id='form-body-list'
+      infinite-scroll-disabled="false"
+      infinite-scroll-distance="10"
+      v-infinite-scroll="onLoadMore"
+    >
       <div v-for="item in list" :key="item.id">
         <slot :item="item">
           {{ item.id }}
         </slot>
       </div>
+      <div class='text-light list-bottom-hint'>—— {{ bottomHint }} ——</div>
     </div>
-    <div class='text-light list-bottom-hint'>—— {{ bottomHint }} ——</div>
   </mt-loadmore>
 </template>
 
@@ -43,6 +48,14 @@ export default {
     }
   },
 
+  activated: function () {
+    console.log('Activate FormBodyList component.')
+  },
+
+  deactivated: function () {
+    console.log('Deactivate FormBodyList component.')
+  },
+
   methods: {
     onLoadTop: function () {
       console.log('On load top of form body list.')
@@ -58,6 +71,8 @@ export default {
         this.$emit('loadMoreData')
       }
     }
+
+    /****************************************/
   }
 }
 </script>

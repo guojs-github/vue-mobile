@@ -3,6 +3,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home/Home'
 import ProjectDailyReportList from '@/components/ProjectDailyReport/List'
+import ProjectDailyReportDetail from '@/components/ProjectDailyReport/Detail'
 
 Vue.use(Router)
 
@@ -16,7 +17,16 @@ export default new Router({
     {
       path: '/ProjectDailyReport/list',
       name: 'ProjectDailyReportList',
-      component: ProjectDailyReportList
+      component: ProjectDailyReportList,
+      meta: {
+        keepAlive: true, // 用于判断页面是否要使用缓存机制
+        isBack: false // 判断页面是否返回，如果不是返回则还是要刷新数据
+      }
+    },
+    {
+      path: '/ProjectDailyReport/detail',
+      name: 'ProjectDailyReportDetail',
+      component: ProjectDailyReportDetail
     }
   ]
 })

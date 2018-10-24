@@ -1,6 +1,11 @@
 <template>
   <div id="application">
-    <router-view/><!-- 匹配view router选择的组件会显示在这里 -->
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"><!-- 匹配view router选择的组件会显示在这里，要求缓存页面显示 -->
+      </router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"><!-- 匹配view router选择的组件会显示在这里，非缓存页面显示 -->
+    </router-view>
   </div>
 </template>
 
