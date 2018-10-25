@@ -26,12 +26,14 @@
 </template>
 
 <script>
+import { toast } from '../../utils/toast'
 // import { request } from '../../utils/request'
 import FormTitle from '@/components/Common/FormTitle'
 export default {
   name: 'ProjectDailyReportDetail',
   data () {
     return {
+      id: -1,
       data: {
         head: {},
         detail: []
@@ -46,7 +48,6 @@ export default {
 
     this.init()
   },
-
   methods: {
     onGoback: function () {
       console.log('On click back')
@@ -58,7 +59,37 @@ export default {
     init: function () {
       console.log('Project daily report detail initialize.')
 
-      this.query()
+      this.getParams()
+      if (this.check()) {
+        this.query()
+      }
+    },
+
+    getParams: function () {
+      console.log('Get params')
+      let params = this.$route.params
+
+      // Bill id
+      this.id = params.id
+      console.log('bill id:' + this.id)
+    },
+
+    check: function () {
+      console.log('Check')
+      let _this = this
+
+      if (typeof this.id === 'undefined') {
+        toast.show(
+          '单据识别号无效，无法展示信息',
+          2000,
+          function () {
+            _this.onGoback()
+          }
+        )
+        return false
+      }
+
+      return true
     },
 
     query: function () {

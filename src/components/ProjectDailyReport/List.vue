@@ -103,6 +103,7 @@ export default {
 
       this.$router.push({
         path: '/ProjectDailyReport/detail',
+        name: 'ProjectDailyReportDetail',
         params: {
           id: e.currentTarget.id
         }
