@@ -89,8 +89,40 @@ const request = {
       resolve(data)
     })
     return p
-  }
+  },
 
+  projectDailyReportDetail: (param) => {
+    console.log('Call project daily report detail.')
+    console.log('param:' + JSON.stringify(param))
+
+    let p = new Promise(function (resolve, reject) {
+      let data = {
+        return: 0,
+        head: {
+          startDate: '20180101',
+          endDate: '20180831'
+        },
+        detail: []
+      }
+
+      for (let i = 0; i < 100; i++) {
+        let item = {
+          id: 1,
+          company: '中通服供应链管理有限公司' + i,
+          pickup: 104,
+          shipping: 0,
+          transfer: 53,
+          sign: 51,
+          total: 105
+        }
+
+        data.detail[data.detail.length] = item
+      }
+
+      resolve(data)
+    })
+    return p
+  }
 }
 
 export {

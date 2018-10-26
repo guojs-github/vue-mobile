@@ -2,32 +2,46 @@
   <div class="form">
     <FormTitle title='项目日报' :showGoback='true' @goback='onGoback'/>
     <div class='form-body' >
-<!--      <FormBodyList :list="data.list" :more="data.more" @loadData='onLoadData' @loadMoreData='onLoadMoreData'>
-        <template slot-scope="{ item }">
-          <div class='section projectDailyReport'>
-            <div class='flex-column ef-click content '>
-              <div class='text-dark report-title'>
-                {{ item.title }}
-              </div>
-              <div class='text-light report-time'>
-                {{ item.time }}
-              </div>
-              <div class='text-normal report-description'>
-                {{ item.description }}
-              </div>
-            </div>
+      <div class='section border-bottom bill-head'>
+        <div class='row'>
+          <div class='text-normal start-date'>{{ data.head.startDate }}</div>
+          <div class='text-normal hyphen'>-</div>
+          <div class='text-normal end-date'>{{ data.head.endDate }}</div>
+        </div>
+      </div>
+      <div class='detail'>
+        <div :id="item.id" class='section detail-item' v-for="item in data.detail" :key="item.id">
+          <div class='row text-blue company'>{{ item.company }}</div>
+          <div class='row pickup'>
+            <div class='text-normal label'>提货完成</div>
+            <div class='text-normal value'>{{ item.pickup }}</div>
           </div>
+          <div class='row shipping'>
+            <div class='text-normal label'>省际在途</div>
+            <div class='text-normal value'>{{ item.shipping }}</div>
+          </div>
+          <div class='row transfer'>
+            <div class='text-normal label'>入库中转</div>
+            <div class='text-normal value'>{{ item.transfer }}</div>
+          </div>
+          <div class='row sign'>
+            <div class='label'>入库中转</div>
+            <div class='text-normal value'>{{ item.sign }}</div>
+          </div>
+          <div class='row total'>
+            <div class='label'>总单数</div>
+            <div class='text-red value'>{{ item.total }}</div>
+          </div>
+        </div>
+      </div>
 
-        </template>
-      </FormBodyList>
--->
     </div>
   </div>
 </template>
 
 <script>
 import { toast } from '../../utils/toast'
-// import { request } from '../../utils/request'
+import { request } from '../../utils/request'
 import FormTitle from '@/components/Common/FormTitle'
 export default {
   name: 'ProjectDailyReportDetail',
@@ -35,7 +49,10 @@ export default {
     return {
       id: -1,
       data: {
-        head: {},
+        head: {
+          startDate: '',
+          endDate: ''
+        },
         detail: []
       }
     }
@@ -94,39 +111,61 @@ export default {
 
     query: function () {
       console.log('Project daily report detail query.')
-      /*
+
       let param = {
-        pageIndex: reset ? 0 : this.data.pageIndex + 1,
-        pageSize: this.data.pageSize
+        id: this.id
       }
 
       let _this = this
-      request.projectDailyReportList(param).then(
+      request.projectDailyReportDetail(param).then(
         function (data) {
           console.log('Call project daily report list success.')
           console.log('Data:' + JSON.stringify(data))
 
           if (data.return === 0) {
-            if (reset) {
-              _this.data.list.splice(0, _this.data.list.length)
-              _this.data.pageIndex = -1
-            }
+            // head////////////
+            _this.data.head.startDate = _this.formatDateString(data.head.startDate)
+            _this.data.head.endDate = _this.formatDateString(data.head.endDate)
 
-            for (let i = 0; i < data.list.length; i++) {
-              _this.data.list.splice(_this.data.list.length, 1, data.list[i])
+            // detail////////////
+            // clear
+            _this.data.detail.splice(0, _this.data.detail.length)
+            // add
+            for (let i = 0; i < data.detail.length; i++) {
+              _this.data.detail.splice(_this.data.detail.length, 1, data.detail[i])
             }
-
-            _this.data.more = data.more
-            _this.data.pageIndex++
           }
         },
         function (message) {
-          console.log('Call project daily report list fail.')
+          console.log('Call project daily report detail fail.')
           console.log('Message:' + message)
+
+          toast.show(
+            '获取单据信息失败',
+            2000,
+            function () {
+              _this.onGoback()
+            }
+          ) // toast
         }
-      )
-      */
-    } // query
+      ) // then
+    }, // query
+
+    formatDateString: function (d) {
+      console.log('Format date string.')
+      console.log('d:' + d)
+
+      if ((typeof d !== 'string') || (d.trim().length <= 0)) {
+        return ''
+      }
+
+      let temp = window.grass.time.formatDateString(d)
+      temp = temp.replace('-', '年')
+      temp = temp.replace('-', '月')
+      temp += '日'
+
+      return temp
+    }
   }
 }
 </script>
