@@ -18,7 +18,7 @@
       </div>
       <div class='border-bottom caption-bottom-line'>
       </div>
-      <div class='flex-column ef-click content '>
+      <div :id='projectDailyReport.id' class='flex-column ef-click content' @click='onClickProjectDailyReportDetail'>
         <div class='text-dark report-title'>
           {{ projectDailyReport.title }}
         </div>
@@ -34,7 +34,7 @@
     <div class='section my-orders'>
       <div class='row caption'>
         <div class='text-dark text'>我的订单</div>
-        <div class='flex-row more ef-click'>
+        <div class='flex-row more ef-click' @click='onClickMyOrdersMore'>
           <div class='text-light more-text'>
             查看更多
           </div>
@@ -116,6 +116,7 @@ export default {
   data () {
     return {
       projectDailyReport: {
+        id: 1,
         title: '标题',
         time: '1900-01-01 00:00',
         description: '描述'
@@ -145,9 +146,27 @@ export default {
   },
   methods: {
     onClickProjectDailyReportMore: function (e) {
-      console.log('On click more project daily report')
+      console.log('On click more project daily report.')
 
       this.$router.push('/ProjectDailyReport/list')
+    },
+
+    onClickProjectDailyReportDetail: function (e) {
+      console.log('On click more project daily report detail.')
+
+      this.$router.push({
+        path: '/ProjectDailyReport/detail',
+        name: 'ProjectDailyReportDetail',
+        params: {
+          id: e.currentTarget.id
+        }
+      })
+    },
+
+    onClickMyOrdersMore: function (e) {
+      console.log('On click more of my orders.')
+
+      this.$router.push('/Orders/MyOrders')
     },
 
     /******************************************************/
@@ -175,6 +194,7 @@ export default {
           console.log('data:' + JSON.stringify(data))
 
           _this.projectDailyReport = {
+            id: data.id,
             title: data.title,
             time: data.time,
             description: data.description

@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home/Home'
 import ProjectDailyReportList from '@/components/ProjectDailyReport/List'
 import ProjectDailyReportDetail from '@/components/ProjectDailyReport/Detail'
+import MyOrders from '@/components/Orders/MyOrders'
 
 Vue.use(Router)
 
@@ -27,6 +28,15 @@ export default new Router({
       path: '/ProjectDailyReport/detail',
       name: 'ProjectDailyReportDetail',
       component: ProjectDailyReportDetail
+    },
+    {
+      path: '/Orders/MyOrders',
+      name: 'MyOrders',
+      component: MyOrders,
+      meta: {
+        keepAlive: true,
+        isBack: false
+      }
     }
   ]
 })
