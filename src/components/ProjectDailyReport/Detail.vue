@@ -33,8 +33,8 @@
             <div class='text-red value'>{{ item.total }}</div>
           </div>
         </div>
+        <div class='text-light list-bottom-hint'>—— 我是有底线的 ——</div>
       </div>
-
     </div>
   </div>
 </template>

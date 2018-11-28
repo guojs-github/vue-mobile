@@ -108,7 +108,7 @@ const request = {
 
       for (let i = 0; i < 100; i++) {
         let item = {
-          id: 1,
+          id: i,
           company: '中通服供应链管理有限公司' + i,
           pickup: 104,
           shipping: 0,
