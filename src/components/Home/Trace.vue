@@ -7,7 +7,7 @@
     <div class='section ef-click menu orders-finished' @click='onClickOrdersFinished'>
       <div class='flex-row'>
         <div class='image'>
-          <img src='../../assets/orders-finished.png'/>
+          <img src='../../assets/query-inventory.png'/>
         </div>
         <div class='text-normal label'>已完结订单</div>
       </div>
@@ -27,7 +27,7 @@
     <div class='section ef-click menu orders-query' @click='onClickOrdersQuery'>
       <div class='flex-row'>
         <div class='image'>
-          <img src='../../assets/orders-query.png'/>
+          <img src='../../assets/query-by-orders-no.png'/>
         </div>
         <div class='text-normal label'>运单号查询</div>
       </div>
