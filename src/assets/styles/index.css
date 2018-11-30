@@ -84,6 +84,12 @@
 	background-color: #3a8efa;
 }
 
+.background-image {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100% 100%;
+}
+
 .border-bottom {
 	border-bottom: 1px solid #f3f3f3;
 }

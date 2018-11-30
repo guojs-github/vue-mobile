@@ -1,0 +1,10 @@
+/*
+	个人中心page样式 
+*/
+.home-page .image.top {
+  width: 100%;  
+  height: 100px;
+  
+  background-image: url(../../assets/me-head-bg.png);
+}
+

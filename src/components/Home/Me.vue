@@ -1,6 +1,7 @@
 <template>
   <div class="home-page">
-    个人中心
+    <div class='image top background-image'>
+    </div>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ export default {
 </script>
 
 <style scoped src='./Page.css'/>
+<style scoped src='./Me.css'/>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
