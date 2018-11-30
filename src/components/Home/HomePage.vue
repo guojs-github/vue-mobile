@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page">
+  <div class="home-page" @scroll="onScroll">
     <div class='image top'>
       <img src='../../assets/home-ad.png'/>
     </div>
@@ -115,6 +115,7 @@ export default {
   name: 'HomePage',
   data () {
     return {
+      scrollTop: 0,
       projectDailyReport: {
         id: 1,
         title: '标题',
@@ -137,13 +138,22 @@ export default {
       }
     }
   },
+
   components: {
   },
+
   created: function () {
     console.log('HomePage created.')
 
     this.init()
   },
+
+  activated: function () {
+    console.log('Home page activated.')
+
+    this.init()
+  },
+
   methods: {
     onClickProjectDailyReportMore: function (e) {
       console.log('On click more project daily report.')
@@ -169,11 +179,19 @@ export default {
       this.$router.push('/Orders/MyOrders')
     },
 
+    onScroll: function (e) {
+      console.log('On home-page scroll')
+      console.log('Scroll top:' + e.currentTarget.scrollTop)
+
+      this.scrollTop = e.currentTarget.scrollTop
+    },
+
     /******************************************************/
     init: function () {
       console.log('initialize HomePage.')
 
       this.query()
+      this.restore()
     },
 
     query: function () {
@@ -253,7 +271,18 @@ export default {
           console.log('message:' + message)
         }
       ) // warningLatest
-    }
+    },
+
+    restore: function () {
+      console.log('Restore display')
+      console.log('scrollTop:' + this.scrollTop)
+
+      // scroll top
+      let el = document.getElementsByClassName('home-page')
+      if (el.length === 1) {
+        el[0].scrollTo(0, this.scrollTop)
+      }
+    } // restore
   }
 }
 </script>

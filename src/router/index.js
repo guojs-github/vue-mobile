@@ -13,7 +13,10 @@ export default new Router({
     {
       path: '/', /* 当url后面服务器地址描述后只有/的时候，调用对应组件进行显示 */
       name: 'Home',
-      component: Home
+      component: Home,
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/ProjectDailyReport/list',
