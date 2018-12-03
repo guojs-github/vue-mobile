@@ -159,7 +159,7 @@ export default {
         return ''
       }
 
-      let temp = window.grass.time.formatDateString(d)
+      let temp = window.myApi.time.formatDateString(d)
       temp = temp.replace('-', '年')
       temp = temp.replace('-', '月')
       temp += '日'
