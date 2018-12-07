@@ -63,3 +63,28 @@
 	margin-left: 13px;
 }
 
+.orders.section > .row{
+	justify-content: space-between;
+}
+
+.orders.section .orders-button{
+	justify-content: flex-start;
+	
+	width: 70px;
+	height: 85px;
+}
+
+.orders.section .image {
+	margin-top: 12px;
+
+	width: 70px;
+	height: 40px;
+}
+
+.orders.section .image > img {
+	width: 28px;
+}
+
+.orders.section  .all > .image > img {
+	width: 23px;
+}

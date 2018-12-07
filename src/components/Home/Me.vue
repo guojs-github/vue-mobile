@@ -25,6 +25,47 @@
         </div>
       </div>
     </div>
+
+    <div class='orders section'>
+      <div class='row'>
+        <div class='shipping orders-button flex-column ef-click'>
+          <div class='image'>
+            <img src='../../assets/me-bill-shipping.png'/>
+          </div>
+          <div class='caption text-normal'>
+            已发货
+          </div>
+        </div>
+
+        <div class='finished orders-button flex-column ef-click'>
+          <div class='image'>
+            <img src='../../assets/me-bill-finished.png'/>
+          </div>
+          <div class='caption text-normal'>
+            已完结
+          </div>
+        </div>
+
+        <div class='to-be-evaluated orders-button flex-column ef-click'>
+          <div class='image'>
+            <img src='../../assets/me-to-be-evaluated.png'/>
+          </div>
+          <div class='caption text-normal'>
+            待评价
+          </div>
+        </div>
+
+        <div class='all orders-button flex-column ef-click'>
+          <div class='image'>
+            <img src='../../assets/me-all.png'/>
+          </div>
+          <div class='caption text-normal'>
+            全部订单
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
