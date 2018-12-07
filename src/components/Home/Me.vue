@@ -66,6 +66,52 @@
       </div>
     </div>
 
+    <div class='user-info section'>
+      <div class='name row border-bottom'>
+        <div class='inner-row row'>
+          <div class='label text-light-blue'>
+            姓名
+          </div>
+          <div class='value'>
+            张三
+          </div>
+        </div>
+      </div>
+
+      <div class='job row border-bottom'>
+        <div class='inner-row row'>
+          <div class='label text-light-blue'>
+            岗位
+          </div>
+          <div class='value'>
+            业务员
+          </div>
+        </div>
+      </div>
+
+      <div class='company row border-bottom'>
+        <div class='inner-row row'>
+          <div class='label text-light-blue'>
+            公司名称
+          </div>
+          <div class='value'>
+            上海博科资讯股份
+          </div>
+        </div>
+      </div>
+
+      <div class='adress row border-bottom'>
+        <div class='inner-row row'>
+          <div class='label text-light-blue'>
+            公司地址
+          </div>
+          <div class='value'>
+            上海市淮海东路1号
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </template>
 
