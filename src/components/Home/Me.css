@@ -102,9 +102,6 @@
 	padding: 0;
 
 	width: calc(100% - 20px);
-	border: 1px solid #C8C8C8;
-	border-radius: 8px;
-	box-shadow: 0 0 6px 0 rgba(0,0,0,0.3);
 }
 
 .user-info.section > .row{
@@ -129,4 +126,50 @@
 	width: calc(100% - 66px);
 	min-height: 25px;
 	line-height: 25px;	
+}
+
+.user-info.section > .edit.row > .inner-row {
+	justify-content: center;
+	align-items: center;
+}
+
+.user-info.section > .edit.row .image > img{
+	width: 18px;
+	height: 18px;
+}
+
+.user-info.section > .edit.row .label{
+	margin-left: 10px;
+}
+
+.hot-line.section {
+	margin: 15px 10px 0 10px;
+	padding: 0;
+	justify-content: flex-start;
+	align-items: flex-start;
+
+	width: calc(100% - 20px);
+	height: 90px;
+	background-color: #9ed3f5;
+	background-image: url(../../assets/me-cc-bg.png);
+	background-size: auto 100%;
+	background-position: right;
+}
+
+.hot-line.section > .content {
+	align-items: flex-start;
+}
+
+.hot-line.section .label {
+	margin-top: 15px;
+	margin-left: 25px;
+	
+	font-size: 16px;
+}
+
+.hot-line.section .number {
+	margin-top: 5px;
+	margin-left: 45px;
+	
+	font-size: 20px;
 }

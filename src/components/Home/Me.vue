@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <div class='user-info section'>
+    <div class='user-info section box-shadow'>
       <div class='name row border-bottom'>
         <div class='inner-row row'>
           <div class='label text-light-blue'>
@@ -111,7 +111,25 @@
         </div>
       </div>
 
+      <div class='edit row ef-click'>
+        <div class='inner-row row'>
+          <div class='image'>
+            <img src='../../assets/edit.png'/>
+          </div>
+          <div class='label text-red'>
+            修改
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class='hot-line section box-shadow background-image'>
+      <div class='content flex-column'>
+        <div class='label text-white'>客服电话</div>
+        <div class='number text-white'>88888888888</div>
+      </div>
+    </div>
+
   </div>
 </template>
 
