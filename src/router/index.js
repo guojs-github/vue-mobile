@@ -5,6 +5,7 @@ import Home from '@/components/Home/Home'
 import ProjectDailyReportList from '@/components/ProjectDailyReport/List'
 import ProjectDailyReportDetail from '@/components/ProjectDailyReport/Detail'
 import MyOrders from '@/components/Orders/MyOrders'
+import OrderDetail from '@/components/Orders/Detail'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
         keepAlive: true,
         isBack: false
       }
+    },
+    {
+      path: '/Orders/Detail',
+      name: 'OrderDetail',
+      component: OrderDetail
     }
   ]
 })
