@@ -45,7 +45,7 @@
       </div>
       <div class='border-bottom caption-bottom-line'>
       </div>
-      <div class='flex-column ef-click content '>
+      <div :id = 'myOrders.id' class='flex-column ef-click content' @click='onClickOrderDetail'>
         <div class='row orders-title'>
           <div class='flex-row text'>
             <div>运单号:</div>
@@ -117,12 +117,13 @@ export default {
     return {
       scrollTop: 0,
       projectDailyReport: {
-        id: 1,
+        id: -1,
         title: '标题',
         time: '1900-01-01 00:00',
         description: '描述'
       },
       myOrders: {
+        id: -1,
         code: '运单编号',
         status: '运单状态',
         favour: true,
@@ -132,6 +133,7 @@ export default {
         arrival: '到达信息'
       },
       warning: {
+        id: -1,
         title: '标题',
         time: '1900-01-01 00:00',
         content: '内容'
@@ -162,7 +164,7 @@ export default {
     },
 
     onClickProjectDailyReportDetail: function (e) {
-      console.log('On click more project daily report detail.')
+      console.log('On click project daily report detail.')
 
       this.$router.push({
         path: '/ProjectDailyReport/detail',
@@ -177,6 +179,19 @@ export default {
       console.log('On click more of my orders.')
 
       this.$router.push('/Orders/MyOrders')
+    },
+
+    onClickOrderDetail: function (e) {
+      console.log('On click order detail.')
+      console.log('id:' + e.currentTarget.id)
+
+      this.$router.push({
+        path: '/Orders/detail',
+        name: 'OrderDetail',
+        params: {
+          id: e.currentTarget.id
+        }
+      })
     },
 
     onScroll: function (e) {
@@ -235,6 +250,7 @@ export default {
           console.log('data:' + JSON.stringify(data))
 
           _this.myOrders = {
+            id: data.id,
             code: data.code,
             status: data.status,
             favour: data.favour,

@@ -23,6 +23,7 @@ const request = {
 
     let p = new Promise(function (resolve, reject) {
       resolve({
+        id: 2048,
         code: 'LGS201808190000023',
         status: '已完结',
         favour: true,
@@ -115,6 +116,41 @@ const request = {
           transfer: 53,
           sign: 51,
           total: 105
+        }
+
+        data.detail[data.detail.length] = item
+      }
+
+      resolve(data)
+    })
+    return p
+  },
+
+  orderDetail: (param) => {
+    console.log('Call order detail.')
+    console.log('param:' + JSON.stringify(param))
+
+    let p = new Promise(function (resolve, reject) {
+      let data = {
+        return: 0,
+        head: {
+          id: 2048,
+          code: 'FH20170811000001',
+          status: '已发车',
+          favour: true,
+          type: '提货入库',
+          shippingCode: 'HTM20180808014901',
+          address: '温江区XX大道XX路绣大道锦蓉路',
+          contact: '王小二',
+          contactTel: '15000012345'
+        },
+        detail: []
+      }
+
+      for (let i = 0; i < 100; i++) {
+        let item = {
+          taskCode: '巴中_XXXXXXX_X16A',
+          quantity: i
         }
 
         data.detail[data.detail.length] = item

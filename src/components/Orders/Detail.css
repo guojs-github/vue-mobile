@@ -9,17 +9,33 @@
 .bill-head {
   position: fixed;
   top: 50px;
+  padding: 0 10px;
 
-  height: 50px;
-  line-height: 50px;
 }
 
 .bill-head .row {
-  justify-content: center; 
+  justify-content: flex-start; 
 }
 
-.bill-head .row .hyphen{
-	padding: 0 10px;
+.bill-head .row.first {
+	margin-top: 10px;
+}
+
+.bill-head .row.last {
+	margin-bottom: 10px;
+}
+
+.bill-head .row > .label{
+	width: 70px;
+}
+
+.bill-head .row > .value{
+	width: calc(100% - 90px);
+}
+
+.bill-head .row.multi-line > .label, .bill-head .row.multi-line > .value{
+	margin-top: 7px;
+	margin-bottom: 7px;
 }
 
 .detail {

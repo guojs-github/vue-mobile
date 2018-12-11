@@ -43,7 +43,7 @@ export default new Router({
       }
     },
     {
-      path: '/Orders/Detail',
+      path: '/Orders/detail',
       name: 'OrderDetail',
       component: OrderDetail
     }
