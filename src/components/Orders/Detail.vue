@@ -1,67 +1,75 @@
 <template>
-  <div class="form">
-    <FormTitle title='订单详情' :showGoback='true' @goback='onGoback'/>
-    <div class='form-body' >
-      <div class='section border-bottom bill-head'>
-        <div class='row first'>
-          <div class='label text-light'>运单号:</div>
-          <div class='value text-normal'>{{ data.head.code }}</div>
-        </div>
-        <div class='row'>
-          <div class='label text-light'>订单状态:</div>
-          <div class='value text-normal'>{{ data.head.status }}</div>
-        </div>
-        <div class='row'>
-          <div class='label text-light'>订单类型:</div>
-          <div class='value text-normal'>{{ data.head.type }}</div>
-        </div>
-        <div class='row'>
-          <div class='label text-light'>发货编号:</div>
-          <div class='value text-normal'>{{ data.head.shippingCode }}</div>
-        </div>
-        <div class='row multi-line'>
-          <div class='label text-light'>收货地址:</div>
-          <div class='value text-normal'>{{ data.head.address }}</div>
-        </div>
-        <div class='row'>
-          <div class='label text-light'>联系人:</div>
-          <div class='value text-normal'>{{ data.head.contact }}</div>
-        </div>
-        <div class='row last'>
-          <div class='label text-light'>联系电话:</div>
-          <div class='value text-normal'>{{ data.head.contactTel }}</div>
-        </div>
-      </div>
-<!--
-      <div class='detail'>
-        <div :id="item.id" class='section detail-item' v-for="item in data.detail" :key="item.id">
-          <div class='row text-blue company'>{{ item.company }}</div>
-          <div class='row pickup'>
-            <div class='text-normal label'>提货完成</div>
-            <div class='text-normal value'>{{ item.pickup }}</div>
-          </div>
-          <div class='row shipping'>
-            <div class='text-normal label'>省际在途</div>
-            <div class='text-normal value'>{{ item.shipping }}</div>
-          </div>
-          <div class='row transfer'>
-            <div class='text-normal label'>入库中转</div>
-            <div class='text-normal value'>{{ item.transfer }}</div>
-          </div>
-          <div class='row sign'>
-            <div class='label'>入库中转</div>
-            <div class='text-normal value'>{{ item.sign }}</div>
-          </div>
-          <div class='row total'>
-            <div class='label'>总单数</div>
-            <div class='text-red value'>{{ item.total }}</div>
-          </div>
-        </div>
-        <div class='text-light list-bottom-hint'>—— 我是有底线的 ——</div>
-      </div>
--->	  
-    </div>
-  </div>
+	<div class="form">
+		<FormTitle title='订单详情' :showGoback='true' @goback='onGoback'/>
+		<div class='form-body' >
+			<div class='section border-bottom bill-head'>
+				<div class='row first'>
+					<div class='label text-light'>运单号:</div>
+					<div class='value text-normal'>{{ data.head.code }}</div>
+				</div>
+				<div class='row'>
+					<div class='label text-light'>订单状态:</div>
+					<div class='value text-normal'>{{ data.head.status }}</div>
+				</div>
+				<div class='row'>
+					<div class='label text-light'>订单类型:</div>
+					<div class='value text-normal'>{{ data.head.type }}</div>
+				</div>
+				<div class='row'>
+					<div class='label text-light'>发货编号:</div>
+					<div class='value text-normal'>{{ data.head.shippingCode }}</div>
+				</div>
+				<div class='row multi-line'>
+					<div class='label text-light'>收货地址:</div>
+					<div class='value text-normal'>{{ data.head.address }}</div>
+				</div>
+				<div class='row'>
+					<div class='label text-light'>联系人:</div>
+					<div class='value text-normal'>{{ data.head.contact }}</div>
+				</div>
+				<div class='row last'>
+					<div class='label text-light'>联系电话:</div>
+					<div class='value text-normal'>{{ data.head.contactTel }}</div>
+				</div>
+
+				<div class='detail-head row'>
+					<div class='label text-red'>物资明细</div>
+				</div>
+			</div>
+
+			<div class='detail'>
+				<div :id="item.id" class='section detail-item' v-for="item in data.detail" :key="item.id">
+					<div class='row taks-code'>
+						<div class='text-light label'>任务:</div>
+						<div class='text-normal value'>{{ item.taskCode }}</div>
+					</div>
+					<div class='row quantity'>
+						<div class='text-light label'>数量:</div>
+						<div class='text-normal value'>{{ item.quantity }}</div>
+					</div>
+				</div>
+				<div class='text-light list-bottom-hint'>—— 我是有底线的 ——</div>
+			</div>
+
+			<div class='bottom-bar section border-top'>
+				<div class='bar row'>
+					<div class='left'>
+						<div class='image ef-click' @click='onClickTrack'>
+							<img src='../../assets/track.png'/>
+						</div>
+					</div>
+					<div class='right flex-row'>
+						<div class='button ef-click' @click='onClickPickupSign'>
+							提货签到
+						</div>
+						<div class='button ef-click' @click='onClickEvaluate'>
+							评价
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -192,7 +200,20 @@ export default {
           ) // toast
         }
       ) // then
-    } // query
+    }, // query
+
+    /*********************************/
+    onClickTrack: function (e) {
+		console.log('On click track button.')
+	},
+	
+	onClickPickupSign: function (e) {
+		console.log('On click pickup sign button.')
+	},
+	
+	onClickEvaluate: function (e) {
+		console.log('On click evaluate button.')
+	}
   } // methods
 }
 </script>

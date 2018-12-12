@@ -149,7 +149,8 @@ const request = {
 
       for (let i = 0; i < 100; i++) {
         let item = {
-          taskCode: '巴中_XXXXXXX_X16A',
+          id: i,
+          taskCode: 'YY_XXXXXXX_X16A',
           quantity: i
         }
 
