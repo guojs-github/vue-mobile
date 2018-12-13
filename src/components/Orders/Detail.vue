@@ -116,6 +116,18 @@ export default {
       this.$router.go(-1)
     },
 
+    onClickTrack: function (e) {
+		console.log('On click track button.')
+	},
+	
+	onClickPickupSign: function (e) {
+		console.log('On click pickup sign button.')
+	},
+	
+	onClickEvaluate: function (e) {
+		console.log('On click evaluate button.')
+	},
+
     /********************************/
     init: function () {
       console.log('Order detail initialize.')
@@ -200,20 +212,8 @@ export default {
           ) // toast
         }
       ) // then
-    }, // query
+    } // query
 
-    /*********************************/
-    onClickTrack: function (e) {
-		console.log('On click track button.')
-	},
-	
-	onClickPickupSign: function (e) {
-		console.log('On click pickup sign button.')
-	},
-	
-	onClickEvaluate: function (e) {
-		console.log('On click evaluate button.')
-	}
   } // methods
 }
 </script>
