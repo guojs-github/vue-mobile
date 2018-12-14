@@ -1,6 +1,7 @@
 /*
 	Home page样式 
 */
+@import '../../assets/styles/myOrder.css';
 @import '../../assets/styles/projectDailyReport.css';
 
 .home-page .label-value-margin {
@@ -8,10 +9,6 @@
 }
 
 .home-page .image.top {
-  width: 100%;  
-}
-
-.home-page .image img {
   width: 100%;  
 }
 
@@ -50,47 +47,6 @@
 	padding: 0 15px;
 
 	width: 100%;
-}
-
-.home-page .my-orders .orders-title {
-	margin-top: 15px;
-
-	width: 100%;
-	text-align: left;
-
-	justify-content: space-between;
-}
-
-.home-page .my-orders .orders-title .right .image.favour {
-	margin-left: 5px;
-
-	width: 15px;
-	height: 15px;	
-}
-
-.home-page .my-orders .orders-schedule {
-	height: 38px;
-	line-height: 38px;	
-	font-size: 18px;
-}
-
-.home-page .my-orders .orders-schedule .hyphen {
-	margin-left: 15px;
-
-	width: 28px;
-	height: 2px;
-}
-
-.home-page .my-orders .orders-schedule .terminal {
-	margin-left: 15px;
-}
-
-.home-page .my-orders .orders-info {
-	margin-bottom: 10px;
-}
-
-.home-page .my-orders .orders-info .arrival {
-	margin-left: 25px;
 }
 
 .home-page .warning-title {

@@ -1,0 +1,44 @@
+/*
+  My order
+*/
+.content > .orders-title {
+	margin-top: 15px;
+
+	width: 100%;
+	text-align: left;
+
+	justify-content: space-between;
+}
+
+.content > .orders-title .right .image.favour {
+	margin-left: 5px;
+
+	width: 15px;
+	height: 15px;	
+}
+
+.content > .orders-schedule {
+	height: 38px;
+	line-height: 38px;	
+	font-size: 18px;
+}
+
+.content > .orders-schedule .hyphen {
+	margin-left: 15px;
+
+	width: 28px;
+	height: 2px;
+}
+
+.content > .orders-schedule .terminal {
+	margin-left: 15px;
+}
+
+.content > .orders-info {
+	margin-bottom: 10px;
+}
+
+.content > .orders-info .arrival {
+	margin-left: 25px;
+}
+

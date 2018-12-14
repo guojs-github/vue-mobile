@@ -160,7 +160,70 @@ const request = {
       resolve(data)
     })
     return p
-  }
+  },
+  
+	myOrders: (param) => {
+		console.log('Call my orders list.')
+		console.log('param:' + JSON.stringify(param))
+
+		let p = new Promise(function (resolve, reject) {
+			let data = {
+				return: 0,
+				more: true,
+				list: []
+			}
+			
+			let category = ''
+			if (param.category === 'all') {
+				category = '全部'
+			} else if (param.category === 'shipping') {
+				category = '已发货'
+			} else if (param.category === 'finished') {
+				category = '已完结'
+			} else if (param.category === 'toBeEvaluated') {
+				category = '待评价'
+			}
+
+			if (param.pageIndex < 2) {
+				data.more = true
+				for (let i = 0; i < param.pageSize; i++) {
+					let id = param.pageIndex * param.pageSize + i
+					let item = {
+						id: id,
+						code: category + '-' + 'LGS20180000023' + '-' + id,
+						status: '已完结',
+						favour: true,
+						startPoint: '北京',
+						terminal: '武汉',
+						time: '2018-08-15 15:55',
+						arrival: '成都 到港'
+					}
+
+					data.list[data.list.length] = item
+				}
+			} else {
+				data.more = false
+				for (let i = 0; i < 3; i++) {
+					let id = param.pageIndex * param.pageSize + i
+					let item = {
+						id: id,
+						code: category + '-' + 'LGS20180000023' + '-' + id,
+						status: '已完结',
+						favour: true,
+						startPoint: '北京',
+						terminal: '武汉',
+						time: '2018-08-15 15:55',
+						arrival: '成都 到港'
+					}
+
+					data.list[data.list.length] = item
+				}
+			}
+
+			resolve(data)
+		})
+		return p
+	} // myOrders
 }
 
 export {

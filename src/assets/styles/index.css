@@ -41,6 +41,10 @@
 	overflow: hidden;
 }
 
+.image  > img {
+	width: 100%;  
+}
+
 .section {
 	min-height: 30px;
 
@@ -104,6 +108,10 @@
 
 .border-bottom {
 	border-bottom: 1px solid #f3f3f3;
+}
+
+.border-bottom-red {
+	border-bottom: 2px solid #ba0f0f;
 }
 
 .border-top {

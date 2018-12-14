@@ -1,6 +1,24 @@
 <template>
   <div class="form">
     <FormTitle title='我的订单' :showGoback='true' @goback='onGoback'/>
+
+	<div class='tabs section border-bottom'>
+		<div class='tab-bar row'>
+			<div class='tab flex-row'>
+				<div :class='[ this.category !== "all"? "title": "title text-red border-bottom-red"]' @click='onChangeTab("all")'>全部</div>
+			</div>
+			<div class='tab flex-row'>
+				<div :class='[ this.category !== "shipping"? "title": "title text-red border-bottom-red"]' @click='onChangeTab("shipping")'>已发货</div>
+			</div>
+			<div class='tab flex-row'>
+				<div :class='[ this.category !== "finished"? "title": "title text-red border-bottom-red"]' @click='onChangeTab("finished")'>已完结</div>
+			</div>
+			<div class='tab flex-row'>
+				<div :class='[ this.category !== "toBeEvaluated"? "title": "title text-red border-bottom-red"]' @click='onChangeTab("toBeEvaluated")'>待评价</div>
+			</div>
+		</div>
+	</div>
+
     <div class='form-body' @scroll="onScroll">
       <FormBodyList
         :list="data.list"
@@ -8,182 +26,218 @@
         @loadData='onLoadData'
         @loadMoreData='onLoadMoreData'
       >
-<!--
         <template slot-scope="{ item }">
-          <div class='section projectDailyReport'>
+          <div class='section my-orders'>
             <div :id='item.id' class='flex-column ef-click content ' @click='onClickDetail'>
-              <div class='text-dark report-title'>
-                {{ item.title }}
-              </div>
-              <div class='text-light report-time'>
-                {{ item.time }}
-              </div>
-              <div class='text-normal report-description'>
-                {{ item.description }}
-              </div>
+				<div class='row orders-title'>
+					<div class='flex-row text'>
+						<div>运单号:</div>
+						<div class='text-dark label-value-margin'>{{ item.code }}</div>
+					</div>
+					<div class='flex-row text-dark right'>
+						<div class='text-red status'>
+						  {{ item.status }}
+						</div>
+						<div class='image favour'>
+						  <img src='../../assets/star_fill.png' v-if='item.favour == true'>
+						  <img src='../../assets/star.png' v-else>
+						</div>
+					</div>
+				</div>
+				<div class='row orders-schedule'>
+					<div class='text-blue startPoint'>{{ item.startPoint}} </div>
+					<div class='background-blue hyphen'></div>
+					<div class='text-blue terminal'>{{ item.terminal}} </div>
+				</div>
+				<div class='row text-normal orders-info'>
+					<div class='flex-row text-normal time'>
+						<div>时间:</div>
+						<div class='label-value-margin'>{{ item.time }}</div>
+					</div>
+					<div class='flex-row text-normal arrival label-value-margin'>
+						<div>到达:</div>
+						<div class='label-value-margin'>{{ item.arrival }}</div>
+					</div>
+				</div>
             </div>
           </div>
         </template>
--->
       </FormBodyList>
     </div>
   </div>
 </template>
 
 <script>
-// import { request } from '../../utils/request'
+import { request } from '../../utils/request'
 import FormTitle from '@/components/Common/FormTitle'
 import FormBodyList from '@/components/Common/FormBodyList'
 export default {
-  name: 'MyOrders',
-  data () {
-    return {
-      scrollTop: 0,
-      data: {
-        pageIndex: -1,
-        pageSize: 30,
-        more: true,
-        list: []
-      }
-    }
-  },
-  components: {
-    FormTitle,
-    FormBodyList
-  },
+	name: 'MyOrders',
 
-  created: function () {
-    console.log('Project daily report list created.')
-  },
+	data () {
+		return {
+			scrollTop: 0,
+			category: '',
+			data: {
+				pageIndex: -1,
+				pageSize: 30,
+				more: true,
+				list: []
+			}
+		}
+	},
 
-  beforeRouteEnter: function (to, from, next) {
-    /*
-    console.log('Project daily report list before router enter.')
-    console.log('to:' + to.name)
-    console.log('from:' + from.name)
-    console.log('next:' + next.name)
+	components: {
+		FormTitle,
+		FormBodyList
+	},
 
-    // 从明细来的为回退，其它都是刷新
-    if (from.name === 'ProjectDailyReportDetail') {
-      to.meta.isBack = true
-    } else {
-      to.meta.isBack = false
-    }
-    */
+	created: function () {
+		console.log('My orders list created.')
+	},
 
-    next() // 继续执行路由, 否则路由中断，页面不显示
-  },
+	beforeRouteEnter: function (to, from, next) {
+		console.log('My orders list before router enter.')
+		console.log('to:' + to.name)
+		console.log('from:' + from.name)
+		console.log('next:' + next.name)
 
-  activated: function () {
-    console.log('Project daily report list activated.')
+		// 从明细来的为回退，其它都是刷新
+		if (from.name === 'OrderDetail') {
+			to.meta.isBack = true
+		} else {
+			to.meta.isBack = false
+		}
 
-    this.init()
-  },
+		next() // 继续执行路由, 否则路由中断，页面不显示
+	},
 
-  methods: {
-    onGoback: function () {
-      console.log('On click back')
+	activated: function () {
+		console.log('My orders list activated.')
 
-      window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    },
+		this.init()
+	},
 
-    onLoadData: function () {
-      console.log('On load project daily report data')
+	methods: {
+		onGoback: function () {
+			console.log('On click back')
 
-      this.query(true)
-    },
+			window.history.length > 1
+			? this.$router.go(-1)
+			: this.$router.push('/home')
+		}, // onGoBack
 
-    onLoadMoreData: function () {
-      console.log('On load more project daily report data')
+		onLoadData: function () {
+			console.log('On load project daily report data')
 
-      this.query()
-    },
+			this.query(true)
+		}, // onLoadData
 
-    onClickDetail: function (e) {
-      console.log('On click report detail')
-      console.log('id:' + e.currentTarget.id)
-      /*
-      this.$router.push({
-        path: '/ProjectDailyReport/detail',
-        name: 'ProjectDailyReportDetail',
-        params: {
-          id: e.currentTarget.id
-        }
-      })
-      */
-    },
+		onLoadMoreData: function () {
+			console.log('On load more project daily report data')
 
-    onScroll: function (e) {
-      console.log('On form-body scroll')
-      console.log('Scroll top:' + e.currentTarget.scrollTop)
+			this.query()
+		}, // onLoadMoreData
 
-      this.scrollTop = e.currentTarget.scrollTop
-    },
+		onClickDetail: function (e) {
+			console.log('On click report detail')
+			console.log('id:' + e.currentTarget.id)
 
-    /********************************/
-    init: function () {
-      console.log('Project daily report list initialize.')
-      /*
-      if (this.$route.meta.isBack) {
-        this.restore()
-      } else {
-        this.query(true)
-      }
-      */
-    },
+			this.$router.push({
+				path: '/Orders/detail',
+				name: 'OrderDetail',
+				params: {
+					id: e.currentTarget.id
+				}
+			})
+		},
 
-    query: function (reset) {
-      console.log('My orders list query.')
-      /*
-      if ((reset !== true) && (this.data.pageIndex < 0)) { // 如果reset标志没有，而且pageIndex不是已经有加载过页面，则不查询
-        return
-      }
+		onScroll: function (e) {
+			console.log('On form-body scroll')
+			console.log('Scroll top:' + e.currentTarget.scrollTop)
 
-      let param = {
-        pageIndex: reset ? 0 : this.data.pageIndex + 1,
-        pageSize: this.data.pageSize
-      }
+			this.scrollTop = e.currentTarget.scrollTop
+		},
 
-      let _this = this
-      request.projectDailyReportList(param).then(
-        function (data) {
-          console.log('Call project daily report list success.')
-          console.log('Data:' + JSON.stringify(data))
+		onChangeTab: function (tab) {
+			console.log('On change tab')
+			console.log('tab:' + tab)
+			
+			if (this.category !== tab) {
+				this.category = tab
+				this.query(true)
+			}			
+		}, // onChangeTab
+	
+		/********************************/
+		init: function () {
+			console.log('My orders list initialize.')
 
-          if (data.return === 0) {
-            if (reset) {
-              _this.data.list.splice(0, _this.data.list.length)
-              _this.data.pageIndex = -1
-            }
+			if (this.$route.meta.isBack) {
+				this.restore()
+			} else {
+				this.onChangeTab('all')				
+			}
+		},
 
-            for (let i = 0; i < data.list.length; i++) {
-              _this.data.list.splice(_this.data.list.length, 1, data.list[i])
-            }
+		query: function (reset) {
+			console.log('My orders list query.')
 
-            _this.data.more = data.more
-            _this.data.pageIndex++
-          }
-        },
-        function (message) {
-          console.log('Call project daily report list fail.')
-          console.log('Message:' + message)
-        }
-      )
-      */
-    }, // query
+			if ((reset !== true) && (this.data.pageIndex < 0)) { // 如果reset标志没有，而且pageIndex不是已经有加载过页面，则不查询
+				return
+			}
+			
+			if (reset) {
+				// scroll top
+				let el = document.getElementsByClassName('form-body')
+				if (el.length === 1) {
+					el[0].scrollTo(0, 0)
+				}
+			}
 
-    restore: function () {
-      console.log('Restore display')
+			let param = {
+				pageIndex: reset ? 0 : this.data.pageIndex + 1,
+				pageSize: this.data.pageSize,
+				category: this.category
+			}
 
-      // scroll top
-      let el = document.getElementsByClassName('form-body')
-      if (el.length === 1) {
-        el[0].scrollTo(0, this.scrollTop)
-      }
-    } // restore
-  }
+			let _this = this
+			request.myOrders(param).then(
+				function (data) {
+					console.log('Call my orders list success.')
+					console.log('Data:' + JSON.stringify(data))
+
+					if (data.return === 0) {
+						if (reset) {
+							_this.data.list.splice(0, _this.data.list.length)
+							_this.data.pageIndex = -1
+						}
+
+						for (let i = 0; i < data.list.length; i++) {
+							_this.data.list.splice(_this.data.list.length, 1, data.list[i])
+						}
+
+						_this.data.more = data.more
+						_this.data.pageIndex++
+					}
+				},
+				function (message) {
+					console.log('Call my orders list fail.')
+					console.log('Message:' + message)
+				}
+			)
+		}, // query
+
+		restore: function () {
+			console.log('Restore display')
+
+			// scroll top
+			let el = document.getElementsByClassName('form-body')
+			if (el.length === 1) {
+				el[0].scrollTo(0, this.scrollTop)
+			}
+		} // restore
+	}
 }
 </script>
 
