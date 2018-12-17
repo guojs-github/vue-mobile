@@ -1,12 +1,13 @@
 // @此处指向路径由webpack配置文件指定，例如webpack.base.config.js 中resolve的定义
 import Vue from 'vue'
 import Router from 'vue-router'
+import Title from '@/components/Title/Title'
 import Home from '@/components/Home/Home'
 import ProjectDailyReportList from '@/components/ProjectDailyReport/List'
 import ProjectDailyReportDetail from '@/components/ProjectDailyReport/Detail'
 import MyOrders from '@/components/Orders/MyOrders'
 import OrderDetail from '@/components/Orders/Detail'
-import Title from '@/components/Title/Title'
+import WarningList from '@/components/Warning/List'
 
 Vue.use(Router)
 
@@ -52,6 +53,15 @@ export default new Router({
       path: '/Orders/detail',
       name: 'OrderDetail',
       component: OrderDetail
+    },
+    {
+      path: '/Warning/list',
+      name: 'WarningList',
+      component: WarningList,
+      meta: {
+        keepAlive: true, 
+        isBack: false
+      }
     }
   ]
 })

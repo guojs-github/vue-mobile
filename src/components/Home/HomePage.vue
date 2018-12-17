@@ -82,7 +82,7 @@
     <div class='section warning'>
       <div class='row caption'>
         <div class='text-dark text'>预警提醒</div>
-        <div class='flex-row more ef-click'>
+        <div class='flex-row more ef-click' @click='onClickWarningsMore'>
           <div class='text-light more-text'>
             查看更多
           </div>
@@ -93,7 +93,7 @@
       </div>
       <div class='border-bottom caption-bottom-line'>
       </div>
-      <div class='flex-column ef-click content '>
+      <div class='flex-column content '>
         <div class='text-dark warning-title'>
           {{ warning.title }}
         </div>
@@ -194,6 +194,15 @@ export default {
       })
     },
 
+	onClickWarningsMore: function (e) {
+		console.log('On click more warnings')
+
+		this.$router.push({
+			path: '/Warning/list',
+			name: 'WarningList'
+		})
+	},
+	
     onScroll: function (e) {
       console.log('On home-page scroll')
       console.log('Scroll top:' + e.currentTarget.scrollTop)
