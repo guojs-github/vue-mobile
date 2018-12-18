@@ -128,13 +128,13 @@ export default {
 		}, // onGoBack
 
 		onLoadData: function () {
-			console.log('On load project daily report data')
+			console.log('On load my orders list data')
 
 			this.query(true)
 		}, // onLoadData
 
 		onLoadMoreData: function () {
-			console.log('On load more project daily report data')
+			console.log('On load more my orders list data')
 
 			this.query()
 		}, // onLoadMoreData
@@ -188,11 +188,7 @@ export default {
 			}
 			
 			if (reset) {
-				// scroll top
-				let el = document.getElementsByClassName('form-body')
-				if (el.length === 1) {
-					el[0].scrollTo(0, 0)
-				}
+				this.restore(true)
 			}
 
 			let param = {
@@ -228,13 +224,16 @@ export default {
 			)
 		}, // query
 
-		restore: function () {
+		restore: function (reset) {
 			console.log('Restore display')
+			console.log('reset:' + reset)
 
 			// scroll top
 			let el = document.getElementsByClassName('form-body')
 			if (el.length === 1) {
-				el[0].scrollTo(0, this.scrollTop)
+				// el[0].scrollTo(0, this.scrollTop) // 微信似乎不支持
+				el[0].scrollLeft = 0
+				el[0].scrollTop = reset ? 0 : this.scrollTop
 			}
 		} // restore
 	}

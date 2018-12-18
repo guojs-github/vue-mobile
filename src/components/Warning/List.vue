@@ -158,13 +158,16 @@ export default {
 			)
 		}, // query
 
-		restore: function () {
+		restore: function (reset) {
 			console.log('Restore display')
+			console.log('reset:' + reset)
 
 			// scroll top
 			let el = document.getElementsByClassName('form-body')
 			if (el.length === 1) {
-				el[0].scrollTo(0, this.scrollTop)
+				// el[0].scrollTo(0, this.scrollTop) // 微信似乎不支持
+				el[0].scrollLeft = 0
+				el[0].scrollTop = reset ? 0 : this.scrollTop
 			}
 		} // restore
 	}
