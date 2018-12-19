@@ -190,8 +190,8 @@ const request = {
 					let id = param.pageIndex * param.pageSize + i
 					let item = {
 						id: id,
-						code: category + '-' + 'LGS20180000023' + '-' + id,
-						status: '已完结',
+						code: 'LGS20180000023' + '-' + id,
+						status: category,
 						favour: true,
 						startPoint: '北京',
 						terminal: '武汉',
@@ -207,8 +207,8 @@ const request = {
 					let id = param.pageIndex * param.pageSize + i
 					let item = {
 						id: id,
-						code: category + '-' + 'LGS20180000023' + '-' + id,
-						status: '已完结',
+						code: 'LGS20180000023' + '-' + id,
+						status: category,
 						favour: true,
 						startPoint: '北京',
 						terminal: '武汉',

@@ -66,12 +66,12 @@
           <div class='background-blue hyphen'></div>
           <div class='text-blue terminal'>{{ myOrders.terminal}} </div>
         </div>
-        <div class='row text-normal orders-info'>
+        <div class='flex-column text-normal orders-info'>
           <div class='flex-row text-normal time'>
             <div>时间:</div>
             <div class='label-value-margin'>{{ myOrders.time }}</div>
           </div>
-          <div class='flex-row text-normal arrival label-value-margin'>
+          <div class='flex-row text-normal arrival'>
             <div>到达:</div>
             <div class='label-value-margin'>{{ myOrders.arrival }}</div>
           </div>

@@ -51,23 +51,7 @@
 				<div class='text-light list-bottom-hint'>—— 我是有底线的 ——</div>
 			</div>
 
-			<div class='bottom-bar section border-top'>
-				<div class='bar row'>
-					<div class='left'>
-						<div class='image ef-click' @click='onClickTrack'>
-							<img src='../../assets/track.png'/>
-						</div>
-					</div>
-					<div class='right flex-row'>
-						<div class='button ef-click' @click='onClickPickupSign'>
-							提货签到
-						</div>
-						<div class='button ef-click' @click='onClickEvaluate'>
-							评价
-						</div>
-					</div>
-				</div>
-			</div>
+			<OrderEditBar @clickButton='onClickEditBar'/>
 		</div>
 	</div>
 </template>
@@ -76,145 +60,140 @@
 import { toast } from '../../utils/toast'
 import { request } from '../../utils/request'
 import FormTitle from '@/components/Common/FormTitle'
+import OrderEditBar from '@/components/Common/OrderEditBar'
 export default {
-  name: 'OrderDetail',
+	name: 'OrderDetail',
 
-  data () {
-    return {
-      id: -1,
-      data: {
-        head: {
-          id: -1,
-          code: '单据编号',
-          status: '订单状态',
-          favour: false,
-          type: '订单类型',
-          shippingCode: '发货编号',
-          address: '收货地址',
-          contact: '联系人',
-          contactTel: '联系电话'
-        },
-        detail: []
-      }
-    }
-  },
-
-  components: {
-    FormTitle
-  },
-
-  created: function () {
-    console.log('Order detail created.')
-
-    this.init()
-  },
-
-  methods: {
-    onGoback: function () {
-      console.log('On click back')
-
-      this.$router.go(-1)
-    },
-
-    onClickTrack: function (e) {
-		console.log('On click track button.')
-	},
-	
-	onClickPickupSign: function (e) {
-		console.log('On click pickup sign button.')
-	},
-	
-	onClickEvaluate: function (e) {
-		console.log('On click evaluate button.')
+	data () {
+		return {
+			id: -1,
+			data: {
+				head: {
+					id: -1,
+					code: '单据编号',
+					status: '订单状态',
+					favour: false,
+					type: '订单类型',
+					shippingCode: '发货编号',
+					address: '收货地址',
+					contact: '联系人',
+					contactTel: '联系电话'
+				},
+				detail: []
+			}
+		}
 	},
 
-    /********************************/
-    init: function () {
-      console.log('Order detail initialize.')
+	components: {
+		FormTitle,
+		OrderEditBar
+	},
 
-      this.getParams()
-      if (this.check()) {
-        this.query()
-      }
-    },
+	created: function () {
+		console.log('Order detail created.')
 
-    getParams: function () {
-      console.log('Get params')
-      let params = this.$route.params
+		this.init()
+	},
 
-      // Bill id
-      this.id = params.id
-      console.log('bill id:' + this.id)
-    },
+	methods: {
+		onGoback: function () {
+			console.log('On click back')
 
-    check: function () {
-      console.log('Check')
-      let _this = this
+			this.$router.go(-1)
+		},
 
-      if (typeof this.id === 'undefined') {
-        toast.show(
-          '单据识别号无效，无法展示信息',
-          2000,
-          function () {
-            _this.onGoback()
-          }
-        )
-        return false
-      }
+		onClickEditBar: function (data) {
+			console.log('On click order edit bar.')
+			console.log('data:' + JSON.stringify(data))
+		},
 
-      return true
-    },
+		/********************************/
+		init: function () {
+			console.log('Order detail initialize.')
 
-    query: function () {
-      console.log('Order detail query.')
+			this.getParams()
+			if (this.check()) {
+				this.query()
+			}
+		},
 
-      let param = {
-        id: this.id
-      }
+		getParams: function () {
+			console.log('Get params')
+			let params = this.$route.params
 
-      let _this = this
-      request.orderDetail(param).then(
-        function (data) {
-          console.log('Call order detail success.')
-          console.log('Data:' + JSON.stringify(data))
+			// Bill id
+			this.id = params.id
+			console.log('bill id:' + this.id)
+		},
 
-          if (data.return === 0) {
-            // head////////////
-            _this.data.head.id = data.head.id
-            _this.data.head.code = data.head.code
-            _this.data.head.status = data.head.status
-            _this.data.head.favour = data.head.favour
-            _this.data.head.type = data.head.type
-            _this.data.head.shippingCode = data.head.shippingCode
-            _this.data.head.address = data.head.address
-            _this.data.head.contact = data.head.contact
-            _this.data.head.contactTel = data.head.contactTel
+		check: function () {
+			console.log('Check')
+			let _this = this
 
-            // detail////////////
-            // clear
-            _this.data.detail.splice(0, _this.data.detail.length)
-            // add
-            for (let i = 0; i < data.detail.length; i++) {
-              _this.data.detail.splice(_this.data.detail.length, 1, data.detail[i])
-            }
-          }
-        },
-        function (message) {
-          console.log('Call order detail fail.')
-          console.log('Message:' + message)
+			if (typeof this.id === 'undefined') {
+				toast.show(
+					'单据识别号无效，无法展示信息',
+					2000,
+					function () {
+						_this.onGoback()
+					}
+				)
+				return false
+			}
 
-          toast.show(
-            '读取单据信息失败',
-            2000,
-            function () {
-              _this.onGoback()
-            }
-          ) // toast
-        }
-      ) // then
-    } // query
+			return true
+		},
 
-  } // methods
+		query: function () {
+			console.log('Order detail query.')
+
+			let param = {
+				id: this.id
+			}
+
+			let _this = this
+			request.orderDetail(param).then(
+				function (data) {
+					console.log('Call order detail success.')
+					console.log('Data:' + JSON.stringify(data))
+
+					if (data.return === 0) {
+						// head////////////
+						_this.data.head.id = data.head.id
+						_this.data.head.code = data.head.code
+						_this.data.head.status = data.head.status
+						_this.data.head.favour = data.head.favour
+						_this.data.head.type = data.head.type
+						_this.data.head.shippingCode = data.head.shippingCode
+						_this.data.head.address = data.head.address
+						_this.data.head.contact = data.head.contact
+						_this.data.head.contactTel = data.head.contactTel
+
+						// detail////////////
+						// clear
+						_this.data.detail.splice(0, _this.data.detail.length)
+						// add
+						for (let i = 0; i < data.detail.length; i++) {
+							_this.data.detail.splice(_this.data.detail.length, 1, data.detail[i])
+						}
+					}
+				},
+				function (message) {
+					console.log('Call order detail fail.')
+					console.log('Message:' + message)
+
+					toast.show(
+						'读取单据信息失败',
+						2000,
+						function () {
+							_this.onGoback()
+						}
+					) // toast
+				}
+			) // then
+		} // query
+
+	} // methods
 }
 </script>
 

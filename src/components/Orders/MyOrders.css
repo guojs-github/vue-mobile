@@ -56,3 +56,7 @@
 	line-height: 40px;	
 	text-align: center;
 }
+
+.bottom-bar.section {
+	padding: 0;
+}

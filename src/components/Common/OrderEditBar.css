@@ -1,0 +1,27 @@
+/*
+	订单编辑工具条 
+*/
+.bottom-bar.section {
+	width: 100%;
+	height: 45px;
+}
+
+.bottom-bar.section > .bar.row {
+	justify-content: space-between;
+
+	width: calc(100% - 10px);
+}
+
+.bottom-bar.section  .left > .image {
+	width: 45px;
+	height: 45px;
+}
+
+.bottom-bar.section  .left > .image > img {
+	width: 40px;
+	height: auto;
+}
+
+.button {
+	margin-left: 10px;
+}

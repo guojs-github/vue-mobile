@@ -3,11 +3,10 @@
 */
 .content > .orders-title {
 	margin-top: 15px;
+	justify-content: space-between;
 
 	width: 100%;
 	text-align: left;
-
-	justify-content: space-between;
 }
 
 .content > .orders-title .right .image.favour {
@@ -36,9 +35,16 @@
 
 .content > .orders-info {
 	margin-bottom: 10px;
+	align-items: flex-start;
+	
+	width: 100%;
 }
 
-.content > .orders-info .arrival {
-	margin-left: 25px;
+.content > .orders-info > div{
+	height: 25px;
+	line-height: 25px;
 }
 
+.content > .orders-info .label-value-margin {
+	margin-left: 10px;
+}

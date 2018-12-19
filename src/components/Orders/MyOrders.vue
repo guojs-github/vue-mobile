@@ -27,40 +27,41 @@
         @loadMoreData='onLoadMoreData'
       >
         <template slot-scope="{ item }">
-          <div class='section my-orders'>
-            <div :id='item.id' class='flex-column ef-click content ' @click='onClickDetail'>
-				<div class='row orders-title'>
-					<div class='flex-row text'>
-						<div>运单号:</div>
-						<div class='text-dark label-value-margin'>{{ item.code }}</div>
-					</div>
-					<div class='flex-row text-dark right'>
-						<div class='text-red status'>
-						  {{ item.status }}
+			<div class='section my-orders'>
+				<div :id='item.id' class='flex-column ef-click content ' @click='onClickDetail'>
+					<div class='row orders-title'>
+						<div class='flex-row text'>
+							<div>运单号:</div>
+							<div class='text-dark label-value-margin'>{{ item.code }}</div>
 						</div>
-						<div class='image favour'>
-						  <img src='../../assets/star_fill.png' v-if='item.favour == true'>
-						  <img src='../../assets/star.png' v-else>
+						<div class='flex-row text-dark right'>
+							<div class='text-red status'>
+							  {{ item.status }}
+							</div>
+							<div class='image favour'>
+							  <img src='../../assets/star_fill.png' v-if='item.favour == true'>
+							  <img src='../../assets/star.png' v-else>
+							</div>
+						</div>
+					</div>
+					<div class='row orders-schedule'>
+						<div class='text-blue startPoint'>{{ item.startPoint}} </div>
+						<div class='background-blue hyphen'></div>
+						<div class='text-blue terminal'>{{ item.terminal}} </div>
+					</div>
+					<div class='flex-column text-normal orders-info'>
+						<div class='flex-row text-normal time'>
+							<div>时间:</div>
+							<div class='label-value-margin'>{{ item.time }}</div>
+						</div>
+						<div class='flex-row text-normal arrival'>
+							<div>到达:</div>
+							<div class='label-value-margin'>{{ item.arrival }}</div>
 						</div>
 					</div>
 				</div>
-				<div class='row orders-schedule'>
-					<div class='text-blue startPoint'>{{ item.startPoint}} </div>
-					<div class='background-blue hyphen'></div>
-					<div class='text-blue terminal'>{{ item.terminal}} </div>
-				</div>
-				<div class='row text-normal orders-info'>
-					<div class='flex-row text-normal time'>
-						<div>时间:</div>
-						<div class='label-value-margin'>{{ item.time }}</div>
-					</div>
-					<div class='flex-row text-normal arrival label-value-margin'>
-						<div>到达:</div>
-						<div class='label-value-margin'>{{ item.arrival }}</div>
-					</div>
-				</div>
-            </div>
-          </div>
+				<OrderEditBar :id='item.id' @clickButton='onClickOrderBar'/>
+			</div>
         </template>
       </FormBodyList>
     </div>
@@ -71,6 +72,7 @@
 import { request } from '../../utils/request'
 import FormTitle from '@/components/Common/FormTitle'
 import FormBodyList from '@/components/Common/FormBodyList'
+import OrderEditBar from '@/components/Common/OrderEditBar'
 export default {
 	name: 'MyOrders',
 
@@ -89,7 +91,8 @@ export default {
 
 	components: {
 		FormTitle,
-		FormBodyList
+		FormBodyList,
+		OrderEditBar
 	},
 
 	created: function () {
@@ -169,6 +172,13 @@ export default {
 			}			
 		}, // onChangeTab
 	
+		onClickOrderBar: function (data) {
+			console.log('On click order bar')
+			console.log('data:' + JSON.stringify(data))
+			
+			return true			
+		},
+		
 		/********************************/
 		init: function () {
 			console.log('My orders list initialize.')
