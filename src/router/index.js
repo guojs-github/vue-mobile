@@ -7,6 +7,7 @@ import ProjectDailyReportList from '@/components/ProjectDailyReport/List'
 import ProjectDailyReportDetail from '@/components/ProjectDailyReport/Detail'
 import MyOrders from '@/components/Orders/MyOrders'
 import OrderDetail from '@/components/Orders/Detail'
+import OrderTrace from '@/components/Orders/Trace'
 import WarningList from '@/components/Warning/List'
 
 Vue.use(Router)
@@ -52,7 +53,16 @@ export default new Router({
     {
       path: '/Orders/detail',
       name: 'OrderDetail',
-      component: OrderDetail
+      component: OrderDetail,
+      meta: {
+        keepAlive: true,
+        isBack: false
+      }
+    },
+    {
+      path: '/Orders/trace',
+      name: 'OrderTrace',
+      component: OrderTrace
     },
     {
       path: '/Warning/list',

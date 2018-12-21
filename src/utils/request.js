@@ -187,7 +187,7 @@ const request = {
 			if (param.pageIndex < 2) {
 				data.more = true
 				for (let i = 0; i < param.pageSize; i++) {
-					let id = param.pageIndex * param.pageSize + i
+					let id = param.pageIndex * param.pageSize + i + ''
 					let item = {
 						id: id,
 						code: 'LGS20180000023' + '-' + id,
@@ -204,7 +204,7 @@ const request = {
 			} else {
 				data.more = false
 				for (let i = 0; i < 3; i++) {
-					let id = param.pageIndex * param.pageSize + i
+					let id = param.pageIndex * param.pageSize + i + ''
 					let item = {
 						id: id,
 						code: 'LGS20180000023' + '-' + id,

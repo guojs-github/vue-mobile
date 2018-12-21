@@ -24,7 +24,7 @@ export default {
 
 	props: {
 		id: {
-			type: Number,
+			type: String,
 			required: false
 		}
 	},
@@ -39,7 +39,7 @@ export default {
 			
 			let data = {
 				id: this.$props.id,
-				code: 'track'
+				code: 'trace'
 			}
 			this.$emit('clickButton', data)
 		},
