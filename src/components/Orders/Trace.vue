@@ -2,42 +2,14 @@
 	<div class="form">
 		<FormTitle title='物流跟踪' :showGoback='true' @goback='onGoback'/>
 		<div class='form-body' >
-		<!--
-			<div class='section border-bottom bill-head'>
-				<div class='row first'>
+			<div class='section border-bottom head'>
+				<div class='row first last'>
 					<div class='label text-light'>运单号:</div>
 					<div class='value text-normal'>{{ data.head.code }}</div>
 				</div>
-				<div class='row'>
-					<div class='label text-light'>订单状态:</div>
-					<div class='value text-normal'>{{ data.head.status }}</div>
-				</div>
-				<div class='row'>
-					<div class='label text-light'>订单类型:</div>
-					<div class='value text-normal'>{{ data.head.type }}</div>
-				</div>
-				<div class='row'>
-					<div class='label text-light'>发货编号:</div>
-					<div class='value text-normal'>{{ data.head.shippingCode }}</div>
-				</div>
-				<div class='row multi-line'>
-					<div class='label text-light'>收货地址:</div>
-					<div class='value text-normal'>{{ data.head.address }}</div>
-				</div>
-				<div class='row'>
-					<div class='label text-light'>联系人:</div>
-					<div class='value text-normal'>{{ data.head.contact }}</div>
-				</div>
-				<div class='row last'>
-					<div class='label text-light'>联系电话:</div>
-					<div class='value text-normal'>{{ data.head.contactTel }}</div>
-				</div>
-
-				<div class='detail-head row'>
-					<div class='label text-red'>物资明细</div>
-				</div>
 			</div>
 
+		<!--
 			<div class='detail'>
 				<div :id="item.id" class='section detail-item' v-for="item in data.detail" :key="item.id">
 					<div class='row taks-code'>
@@ -60,14 +32,14 @@
 
 <script>
 import { toast } from '../../utils/toast'
-// import { request } from '../../utils/request'
+import { request } from '../../utils/request'
 import FormTitle from '@/components/Common/FormTitle'
 export default {
 	name: 'OrderTrace',
 
 	data () {
 		return {
-			id: -1,
+			id: '',
 			data: {
 				head: {
 					code: '单据编号'
@@ -100,7 +72,7 @@ export default {
 
 			this.getParams()
 			if (this.check()) {
-				// this.query()
+				this.query()
 			}
 		},
 
@@ -134,7 +106,6 @@ export default {
 		query: function () {
 			console.log('Order trace query.')
 
-			/*
 			let param = {
 				id: this.id
 			}
@@ -142,20 +113,12 @@ export default {
 			let _this = this
 			request.orderTrace(param).then(
 				function (data) {
-					console.log('Call order detail success.')
+					console.log('Call order trace success.')
 					console.log('Data:' + JSON.stringify(data))
 
 					if (data.return === 0) {
 						// head////////////
-						_this.data.head.id = data.head.id
 						_this.data.head.code = data.head.code
-						_this.data.head.status = data.head.status
-						_this.data.head.favour = data.head.favour
-						_this.data.head.type = data.head.type
-						_this.data.head.shippingCode = data.head.shippingCode
-						_this.data.head.address = data.head.address
-						_this.data.head.contact = data.head.contact
-						_this.data.head.contactTel = data.head.contactTel
 
 						// detail////////////
 						// clear
@@ -167,7 +130,7 @@ export default {
 					}
 				},
 				function (message) {
-					console.log('Call order detail fail.')
+					console.log('Call order trace fail.')
 					console.log('Message:' + message)
 
 					toast.show(
@@ -179,7 +142,6 @@ export default {
 					) // toast
 				}
 			) // then
-			*/
 		} // query
 
 	} // methods

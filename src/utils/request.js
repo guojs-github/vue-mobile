@@ -161,6 +161,73 @@ const request = {
 		})
 		return p
 	}, // orderDetail
+
+	orderTrace: (param) => {
+		console.log('Call order trace.')
+		console.log('param:' + JSON.stringify(param))
+
+		let p = new Promise(function (resolve, reject) {
+			let data = {
+				return: 0,
+				head: {
+					code: 'FH20170811000001'
+				},
+				detail: []
+			}
+
+			// 1
+			let item = {
+				time: '2018-09-11 14:53',
+				description: '已签收，签收人:张兰 124565789566'
+			}
+			data.detail[data.detail.length] = item
+
+			// 2
+			item = {
+				time: '2018-09-10 14:53',
+				description: '已到达:贵州省贵阳市'
+			}
+			data.detail[data.detail.length] = item
+
+			// 3
+			item = {
+				time: '2018-09-09 12:23',
+				description: '已到达:广州省兴围近107国道'
+			}
+			data.detail[data.detail.length] = item
+
+			// 4
+			item = {
+				time: '2018-08-14 13:12',
+				description: '已出库'
+			}
+			data.detail[data.detail.length] = item
+
+			// 5
+			item = {
+				time: '2018-08-12 17:56',
+				description: '已装货，装货人：王刚'
+			}
+			data.detail[data.detail.length] = item
+
+			// 6
+			item = {
+				time: '2018-08-11 08:12',
+				description: '已配送车，车牌：粤12121212，驾驶员：张强'
+			}
+			data.detail[data.detail.length] = item
+
+			// 7
+			item = {
+				time: '2018-08-10 08:12',
+				description: '订单生成，制单人：李四'
+			}
+			data.detail[data.detail.length] = item
+
+			resolve(data)
+		})
+		return p
+	}, // orderDetail
   
 	myOrders: (param) => {
 		console.log('Call my orders list.')

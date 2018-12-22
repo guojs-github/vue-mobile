@@ -1,54 +1,40 @@
 /*
   order trace information
 */
-/*
+
 .section {
   width: 100%;
   background-color: white;
 }
 
-.bill-head {
+.head {
   position: fixed;
   top: 50px;
   padding: 0 10px;
 
 }
 
-.bill-head .row {
+.head .row {
   justify-content: flex-start; 
 }
 
-.bill-head .row.first {
+.head .row.first {
 	margin-top: 10px;
 }
 
-.bill-head .row.last {
+.head .row.last {
 	margin-bottom: 10px;
 }
 
-.bill-head .row > .label{
+.head .row > .label{
 	width: 70px;
 }
 
-.bill-head .row > .value{
+.head .row > .value{
 	width: calc(100% - 90px);
 }
 
-.bill-head .row.multi-line > .label, .bill-head .row.multi-line > .value{
-	margin-top: 7px;
-	margin-bottom: 7px;
-}
-
-.bill-head .detail-head.row {
-	margin-left: -10px;
-	
-	background-color: #ffe7e7;
-}
-
-.bill-head .detail-head.row > .label {
-	margin-left: 10px;
-}
-
+/*
 .detail {
 	margin-top: 260px;
 	margin-bottom: 45px;
