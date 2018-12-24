@@ -178,7 +178,7 @@ const request = {
 			// 1
 			let item = {
 				time: '2018-09-11 14:53',
-				description: '已签收，签收人:张兰 124565789566'
+				description: '已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收已签收，签收人:张兰 124565789566'
 			}
 			data.detail[data.detail.length] = item
 

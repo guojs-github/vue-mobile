@@ -9,23 +9,25 @@
 				</div>
 			</div>
 
-		<!--
 			<div class='detail'>
-				<div :id="item.id" class='section detail-item' v-for="item in data.detail" :key="item.id">
-					<div class='row taks-code'>
-						<div class='text-light label'>任务:</div>
-						<div class='text-normal value'>{{ item.taskCode }}</div>
+				<div :id="item.id" :class=' index === 0? "section detail-item first text-normal": "section detail-item text-light"' v-for="(item, index) in data.detail" :key="item.id">
+					<div class='row time'>
+						<div class='image'>
+							<img src='../../assets/time-axis-only.png' v-if="data.detail.length === 1"/>
+							<img src='../../assets/time-axis-start.png' v-else-if="index === 0"/>
+							<img src='../../assets/time-axis-end.png' v-else-if="index === (data.detail.length - 1)"/>
+							<img src='../../assets/time-axis-middle.png' v-else/>
+						</div>
+						<div class='value'>{{ item.time }}</div>
 					</div>
-					<div class='row quantity'>
-						<div class='text-light label'>数量:</div>
-						<div class='text-normal value'>{{ item.quantity }}</div>
+					<div :class='((index < (data.detail.length - 1)) && (data.detail.length != 1))? "row description middle": "row description"'>
+						<div class='image'>
+						</div>
+						<div class='value'>{{ item.description }}</div>
 					</div>
+					<div :class='((index < (data.detail.length - 1)) && (data.detail.length != 1))? "row space line": "row space"'/>
 				</div>
-				<div class='text-light list-bottom-hint'>—— 我是有底线的 ——</div>
 			</div>
-
-			<OrderEditBar @clickButton='onClickEditBar'/>
-			-->
 		</div>
 	</div>
 </template>
