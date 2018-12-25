@@ -106,7 +106,9 @@ export default {
 		console.log('next:' + next.name)
 
 		// 从明细来的为回退，其它都是刷新
-		if ((from.name === 'OrderDetail') || (from.name === 'OrderTrace')) {
+		if ((from.name === 'OrderDetail') ||
+			(from.name === 'OrderTrace') || 
+			(from.name === 'OrderEvaluate')) {
 			to.meta.isBack = true
 		} else {
 			to.meta.isBack = false
@@ -180,6 +182,14 @@ export default {
 				this.$router.push({
 					path: '/Orders/trace',
 					name: 'OrderTrace',
+					params: {
+						id: data.id
+					}
+				})
+			} else if (data.code === 'evaluate') {
+				this.$router.push({
+					path: '/Orders/evaluate',
+					name: 'OrderEvaluate',
 					params: {
 						id: data.id
 					}
