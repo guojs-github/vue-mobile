@@ -1,0 +1,29 @@
+/*
+	button style
+	20190107 GuoJS
+*/
+
+.button-default() {
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	letter-spacing: 1px;
+	border: 1px solid #f43737;
+}
+
+.button {
+	.button-default();
+	color: #f43737;
+	border-radius: 18px;
+	font-size: 14px;
+	
+	&-red {
+		.button-default();
+		color: white;
+		background-color: #f43737; 
+		border-radius: 5px;	
+		font-size: 15px;
+	}
+}
+

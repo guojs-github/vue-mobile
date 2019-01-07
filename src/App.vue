@@ -15,6 +15,6 @@ export default {
 }
 </script>
 
-<style src="./assets/styles/index.css">
+<style src='./assets/styles/index.less' lang='less'/>
 <style scoped>
 </style>
