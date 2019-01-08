@@ -1,0 +1,57 @@
+/*
+	Home page样式 
+*/
+@import '../../assets/styles/projectDailyReport.less';
+@import '../../assets/styles/myOrder.less';
+@import '../../assets/styles/warning.less';
+
+.home-page {
+	.label-value-margin {
+		margin-left: 10px;
+	}
+
+	.image.top {
+	  width: 100%;  
+	}
+	
+	.row.caption {
+		height: 38px;
+		line-height: 38px;
+
+		justify-content: space-between;
+
+		.text{
+			font-size: 14px;
+			font-weight: bold;
+		}
+
+		.more {
+			height: 38px;
+
+			.image {
+				margin-left: 5px;
+
+				& > img{
+					width: 6px;
+					height: 10px;
+				}
+			}
+		} // more
+	} // .row.caption
+
+	.caption-bottom-line {
+		margin-left: -15px;
+		width: calc(100% + 30px);
+	}
+
+	.content {
+		margin-left: -15px;	
+		padding: 0 15px;
+
+		width: 100%;
+	}
+
+} // .home-page
+
+
+

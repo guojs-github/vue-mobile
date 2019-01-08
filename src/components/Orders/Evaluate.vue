@@ -151,6 +151,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped src='./Evaluate.css'/>
+<style scoped src='./Evaluate.less' lang='less'/>
 <style scoped>
 </style>

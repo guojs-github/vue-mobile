@@ -1,0 +1,49 @@
+/*
+  order evaluate 
+*/
+
+.section {
+	margin: 20px 10px 0 10px;
+	
+	width: calc(100% - 20px);
+	background-color: transparent;
+}
+
+.row {
+	&.score {	
+		height: 30px;
+		line-height: 30px;
+		
+		& > img {
+			margin-left: 10px;
+			height: 20px;
+			
+			&.first {
+				margin-left: 15px;
+			}
+		}
+	} // .score
+
+	&.comment {
+		margin-top: 5px;
+
+		textarea {
+			padding: 5px;
+			resize: none;
+			
+			width: 100%;
+			height: 150px;
+			line-height: 25px;
+			border: 1px solid #b7b7b7;
+			font-size: 13px;
+		}
+	} // .comment
+} // .row
+
+.publish.button-red {
+	margin-top: 40px;
+
+	width: 100%;
+	height: 44px;
+	line-height: 44px;
+}

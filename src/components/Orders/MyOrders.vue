@@ -269,6 +269,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped src='./MyOrders.css'/>
+<style scoped src='./MyOrders.less' lang='less'/>
 <style scoped>
 </style>

@@ -184,6 +184,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped src='./List.css'/>
+<style scoped src='./List.less' lang='less'/>
 <style scoped>
 </style>

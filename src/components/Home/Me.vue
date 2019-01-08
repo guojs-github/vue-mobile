@@ -147,8 +147,8 @@ export default {
 }
 </script>
 
-<style scoped src='./Page.css'/>
-<style scoped src='./Me.css'/>
+<style scoped src='./Page.less' lang='less'/>
+<style scoped src='./Me.less' lang='less'/>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

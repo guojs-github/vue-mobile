@@ -64,8 +64,8 @@ export default {
 }
 </script>
 
-<style scoped src='./Page.css'/>
-<style scoped src='./Trace.css'/>
+<style scoped src='./Page.less' lang='less'/>
+<style scoped src='./Trace.less' lang='less'/>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

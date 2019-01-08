@@ -1,6 +1,7 @@
 /*
-	Home page通用样式 
+	Home pages common style 
 */
+
 .home-page {
 	position: absolute;
    	top: 50px;
@@ -32,23 +33,25 @@
 	height: 80px;
 	box-shadow: 0 0 5px rgba(0,0,0,0.2);
 	border-radius: 2px;
+	
+	.image {
+		width: 40px;
+		& > img {
+			width: 35px !important;
+		}
+	}
+	
+	.label {
+		margin-left: 10px;
+
+		font-size: 16px;
+	}
+
+	& > img {
+		width: 7px;
+	}
 }
 
-.menu  .image {
-	width: 40px;
-}
 
-.menu .image > img {
-  width: 35px !important;
-}
 
-.menu  .label {
-	margin-left: 10px;
-
-	font-size: 16px;
-}
-
-.menu  > img {
-	width: 7px;
-}
 

@@ -1,0 +1,58 @@
+/*
+  project daily report detail style
+*/
+
+.section {
+  width: 100%;
+  background-color: white;
+}
+
+.bill-head {
+  position: fixed;
+  top: 50px;
+
+  height: 50px;
+  line-height: 50px;
+  
+  .row {
+    justify-content: center; 
+
+    .hyphen{
+      padding: 0 10px;
+    }
+  }
+} // .bill-head
+
+
+.detail {
+  margin-top: 60px;
+  
+  .detail-item {
+    margin-top: 10px;
+
+    & > .row {
+      padding: 0 15px;
+
+      width: calc(100% - 30px);
+      height: 30px;
+      line-height: 30px;
+      
+      & > .label {
+        width: 70px;
+      }
+
+      & > .value {
+        font-weight: bold;
+      }
+
+      &.company {
+        color: #0454B2;
+        font-weight: bold;
+      }
+    } // > .row
+  } // .detail-item
+} // .detail
+
+
+
+
