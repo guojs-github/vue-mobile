@@ -3,6 +3,7 @@
 // 这里似乎是入口
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { ADD_BY } from './assets/constants/mutation-types'
 import App from './App' // 组件App
 import router from './router' // 路由器？
 import MintUI from 'mint-ui'
@@ -44,6 +45,17 @@ const store = new Vuex.Store({
 	mutations: {
 		increment (state) {
 			state.count++
+		},
+		
+		incrementBy (state, payload) {
+			state.count += payload.amount
+		},
+		
+		[ADD_BY] (state, payload) {
+			this.commit({
+				type: 'incrementBy',
+				amount: payload.amount
+			})
 		}
 	}	
 })
