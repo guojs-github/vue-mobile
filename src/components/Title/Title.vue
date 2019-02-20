@@ -32,6 +32,15 @@
 				<div class='newProp button ef-click-red' @click='onClickNewProp'>
 					newProp
 				</div>
+				<div class='action-increment button ef-click-red' @click='onClickActionIncrement'>
+					Action increment
+				</div>
+				<div class='action-a button ef-click-red' @click='onClickActionA'>
+					Action A
+				</div>
+				<div>count a = {{ countA }}</div>
+				<div>count b = {{ countB }}</div>
+				
 			</div>
 		</div>
 	</div>
@@ -80,6 +89,14 @@ export default {
 			return (id) => {
 				return this.$store.getters.getTodoById(id)
 			}
+		},
+		
+		countA () {
+			return this.$store.getters.countA
+		},
+
+		countB () {
+			return this.$store.getters['b/countB']
 		}
 	}),
 
@@ -134,6 +151,22 @@ export default {
 			console.log(this.$store.state)
 		},
 
+		onClickActionIncrement: function (e) {
+			this.$store.dispatch('increment').then(
+				() => {
+					console.log('Call action increment success')
+				}
+			)
+		},
+		
+		onClickActionA: function (e) {
+			this.$store.dispatch('actionA').then(
+				() => {
+					console.log('Call action a success')
+				}
+			)
+		},
+		
 		/********************************/
 		init: function () {
 			console.log('Title initialize.')
@@ -171,4 +204,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped src='./Title.less' lang='less'/>
 <style scoped>
+	div.button {
+		width: 100%;
+	}
+	
+	div.button + div.button {
+		margin-top: 10px;
+	}
 </style>

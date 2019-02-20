@@ -3,7 +3,7 @@
 // 这里似乎是入口
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { ADD_BY } from './assets/constants/mutation-types'
+import { ADD_BY, SHOW_COUNT } from './assets/constants/mutation-types'
 import App from './App' // 组件App
 import router from './router' // 路由器？
 import MintUI from 'mint-ui'
@@ -17,14 +17,46 @@ Vue.use(MintUI) // Mint UI
 Vue.use(Vuex) // Vuex
 
 /* Vuex store */
+const moduleA = {
+	state: {
+		countA: 99999
+	},	
+
+	getters: {
+		countA: state => {
+			return state.countA
+		}		
+	}
+}
+
+const moduleB = {
+	namespaced: true,
+
+	state: {
+		countB: 88888
+	},	
+
+	getters: {
+		countB: state => {
+			return state.countB
+		}		
+	}
+}
+
 const store = new Vuex.Store({
+	modules: {
+		a: moduleA,
+		b: moduleB
+	},
+	
 	state: {
 		count: -99,
 		todos: [
 			{ id: 1, text: '1...', done: true },
 			{ id: 2, text: '2...', done: false },
 			{ id: 3, text: '3...', done: true }
-		]		
+		],
+		data: -1
 	},
 	
 	getters: {
@@ -39,7 +71,6 @@ const store = new Vuex.Store({
 		getTodoById: (state) => (id) => {
 			return state.todos.find(todo => todo.id === id)
 		}
-
 	},
 
 	mutations: {
@@ -56,6 +87,30 @@ const store = new Vuex.Store({
 				type: 'incrementBy',
 				amount: payload.amount
 			})
+		},
+
+		[SHOW_COUNT] (state, payload) {
+			console.log('count:' + state.count)
+		}
+		
+	},
+
+	actions: {
+		increment ({ commit }) {
+			console.log('Action increment')
+
+			return new Promise((resolve, reject) => {
+				setTimeout(() => {
+					commit('increment')
+					resolve()
+				}, 3000)
+			})			
+		},
+				
+		async actionA ({ commit, dispatch }, getData) {
+			console.log('Action A')
+
+			commit(SHOW_COUNT, await dispatch('increment'))
 		}
 	}	
 })
