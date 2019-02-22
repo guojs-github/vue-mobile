@@ -11,6 +11,8 @@ import mutations from './mutations'
 import actions from './actions'
 import moduleA from './modules/moduleA'
 import moduleB from './modules/moduleB'
+import testPlugin from './plugins/test'
+import test2Plugin from './plugins/test2'
 
 Vue.use(Vuex) // Vuex
 
@@ -22,5 +24,9 @@ export default new Vuex.Store({
 	state,
 	getters,
 	mutations,
-	actions
+	actions,
+	plugins: [
+		testPlugin,
+		test2Plugin
+	]
 })
